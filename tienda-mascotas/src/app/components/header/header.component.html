@@ -1,1 +1,34 @@
-<p>header works!</p>
+<nav>
+    <div id="logo">
+        <ul>
+            <li>Logo</li>
+            <li><mat-icon>account_circle</mat-icon>Iniciar sesion
+                <a [routerLink]="['/formulario-registro']" routerLinkActive="router-link-active" >Crear Cuenta</a>
+            </li>
+        </ul>
+    </div>
+
+    <div id="menu">
+        <a [routerLink]="['/']" routerLinkActive="router-link-active" >
+            <button mat-button> 
+            <mat-icon aria-hidden="false" aria-label="Example home icon" class="imInicio">home</mat-icon>
+            <span class='inicio'>Inicio</span>
+            </button>
+        </a>
+      
+        <a [routerLink]="['/']" routerLinkActive="router-link-active"> <button mat-button [matMenuTriggerFor]="belowMenu">Categorías</button></a>
+            <mat-menu #belowMenu="matMenu" yPosition="below">
+            <button mat-menu-item>Item 1</button>
+            <button mat-menu-item>Item 2</button>
+            </mat-menu>
+    
+        
+        <button mat-button>Contacto</button>
+        <div id="carrito">
+        <button mat-button>
+            <mat-icon> local_grocery_store</mat-icon>
+            carrito</button>
+        </div>
+    </div>
+
+</nav>

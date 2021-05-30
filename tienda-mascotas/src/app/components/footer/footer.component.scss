@@ -1,0 +1,22 @@
+footer{
+    background-color: black;
+    color:white;
+}
+
+footer ul{
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+}
+footer ul li{
+    list-style: none;
+}
+footer ul li>ul{
+    display: block;
+    padding: 5px;
+    display:flex;
+    flex-direction: row;
+}
+footer ul li>ul li{
+    padding-right:9px;
+}

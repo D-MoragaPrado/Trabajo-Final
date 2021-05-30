@@ -1,0 +1,45 @@
+nav{
+    margin-bottom: 40px;
+    
+}
+#menu{
+    width: 100%;
+    background-color: darkcyan;
+    height: 50px;
+}
+
+#logo{
+    width: 100%;
+    height: 30px;
+}
+
+#logo ul{
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+}
+
+#carrito{
+    float: right;
+    padding-right:20%;
+}
+
+button{
+    border:0px;
+    background-color:  darkcyan;
+    padding: 10px;
+    font-size:14px;
+    color:rgba(245, 245, 245, 0.863);
+    vertical-align: middle;
+    
+}
+
+button:hover{
+    background-color: rgba(255, 255, 255, 0.322);
+}
+
+.inicio{
+    color: chartreuse;
+}
+
+

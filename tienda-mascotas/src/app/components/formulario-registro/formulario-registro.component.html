@@ -1,0 +1,43 @@
+<form [formGroup]="formulario" (ngSubmit)="EnviarDatos()" novalidate #f="ngForm">
+    <ul>
+        <li>
+            <label for="Nombres">Nombres<br></label>
+            <input  formControlName="Nombres" type="text" placeholder="Juanito Alberto" >
+        </li>
+        <li>
+            <label for="Apellidos">Apellidos<br></label>
+            <input  formControlName="Apellidos" type="text" placeholder="Alcachofa Pérez" >
+        </li>
+        <li>
+            <label for="Rut">RUT   (sin puntos y con guión)<br></label>
+            <input formControlName="Rut" type="text" placeholder="11111111-5" pattern="[1-9][0-9]{6,7}[-][0-9kK]"/>
+        </li>
+        <li>
+            <label for="Region">Región<br></label>
+            <select  formControlName="Region">
+                <option selected>Pendientisimo</option>
+            </select>
+        </li>
+        <li>
+            <label for="Comuna">Comuna<br></label>
+            <select  formControlName="Comuna">
+                <option selected>Pendientisimo</option>
+            </select>
+        </li>
+        <li>
+            <label for="Correo" >Correo Electrónico<br></label>
+            <input type="email" formControlName="Correo" >
+        </li>
+        <li>
+            <label for="Contraseña">Contraseña<br></label>
+            <input type="password" formControlName="Contraseña">
+        </li>
+        <li>
+            <label for="Contraseña2">Confirmar Contraseña<br></label>
+            <input type="password" formControlName="Contraseña2">
+        </li>
+        <li>
+            <button class="button" type="submit" [disabled]="formulario.invalid">Agregar</button>
+        </li>
+    </ul>
+</form>
