@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormularioRegistroComponent } from './components/formulario-registro/formulario-registro.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { IniciarSesionComponent } from './components/iniciar-sesion/iniciar-sesion.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     HomeComponent,
     FooterComponent,
     HeaderComponent,
-    FormularioRegistroComponent
+    FormularioRegistroComponent,
+    IniciarSesionComponent
   ],
   imports: [
     BrowserModule,
