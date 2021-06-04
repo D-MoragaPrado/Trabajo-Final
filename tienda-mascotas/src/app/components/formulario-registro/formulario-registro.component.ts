@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Form, FormBuilder,FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
 
 interface region {
   value: string;
@@ -33,7 +34,7 @@ export class FormularioRegistroComponent implements OnInit {
   ];
 
 
-  constructor(private fb:FormBuilder ) {
+  constructor(private fb:FormBuilder,private router: Router) {
     this.formulario=this.fb.group({
       Nombres:['',[Validators.required]],
       Apellidos:['',[Validators.required]],
@@ -41,18 +42,24 @@ export class FormularioRegistroComponent implements OnInit {
       Region:['',[Validators.required]],
       Comuna:['',[Validators.required]],
       Correo:['',[Validators.required,Validators.email]],
-      Contraseña:['',[Validators.required]],
-      Contraseña2:['',[Validators.required]],
+      Contrasenia:['',[Validators.required]],
+      Contrasenia2:['',[Validators.required]],
     });}
 
   ngOnInit(): void {
   }
+
+ 
   EnviarDatos() {
     if (this.formulario.valid) {
+      if(this.formulario.value.Contrasenia != this.formulario.value.Contrasenia2){
+        console.log("no son iguales");
+        alert("Las contraseñas no coinciden")
+      }
+      else{
       console.log(this.formulario.value)
-    }
-    else{
-      alert("FILL ALL FIELDS")
+      this.router.navigateByUrl('/');
+      }
     }
   }
 }
