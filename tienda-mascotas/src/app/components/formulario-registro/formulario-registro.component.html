@@ -1,43 +1,74 @@
-<form [formGroup]="formulario" (ngSubmit)="EnviarDatos()" novalidate #f="ngForm">
+<form [formGroup]="formulario" (ngSubmit)="EnviarDatos()" novalidate class="clase-form">
     <ul>
         <li>
-            <label for="Nombres">Nombres<br></label>
-            <input  formControlName="Nombres" type="text" placeholder="Juanito Alberto" >
+        <mat-form-field class="caja-input">
+            <mat-label>Nombres</mat-label>
+            <input matInput placeholder="Juanito Alberto" formControlName="Nombres">
+            <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
         </li>
         <li>
-            <label for="Apellidos">Apellidos<br></label>
-            <input  formControlName="Apellidos" type="text" placeholder="Alcachofa Pérez" >
+        <mat-form-field class="caja-input">
+            <mat-label>Apellidos</mat-label>
+            <input matInput placeholder="Alcachofa Pérez" formControlName="Apellidos">
+            <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
         </li>
         <li>
-            <label for="Rut">RUT   (sin puntos y con guión)<br></label>
-            <input formControlName="Rut" type="text" placeholder="11111111-5" pattern="[1-9][0-9]{6,7}[-][0-9kK]"/>
+        <mat-form-field class="caja-input">
+            <mat-label>RUT   (sin puntos y con guión)</mat-label>
+            <input matInput placeholder="11111111-5" formControlName="Rut" pattern="[1-9][0-9]{6,7}[-][0-9kK]">
+            <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
         </li>
         <li>
-            <label for="Region">Región<br></label>
-            <select  formControlName="Region">
-                <option selected>Pendientisimo</option>
-            </select>
+        <mat-form-field appearance="fill" class="caja-select">
+            <mat-label>Region</mat-label>
+            <mat-select formControlName="Region">
+              <mat-option *ngFor="let region of Regiones" [value]="region.value">
+                {{region.viewValue}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
         </li>
+
+
+
+   <!--Hay que cambiar a mat-form-->     
         <li>
             <label for="Comuna">Comuna<br></label>
             <select  formControlName="Comuna">
                 <option selected>Pendientisimo</option>
             </select>
         </li>
+
+
+
+
         <li>
-            <label for="Correo" >Correo Electrónico<br></label>
-            <input type="email" formControlName="Correo" >
+        <mat-form-field class="caja-input">
+            <mat-label>Correo Electrónico</mat-label>
+            <input matInput  type="email" placeholder="example@correo.com" formControlName="Correo" >
+            <mat-icon matSuffix>alternate_email</mat-icon>
+        </mat-form-field>
         </li>
         <li>
-            <label for="Contraseña">Contraseña<br></label>
-            <input type="password" formControlName="Contraseña">
+        <mat-form-field class="caja-input">
+            <mat-label>Contraseña</mat-label>
+            <input matInput  type="password"  formControlName="Contraseña" >
+            <mat-icon matSuffix>vpn_key</mat-icon>
+        </mat-form-field>
         </li>
         <li>
-            <label for="Contraseña2">Confirmar Contraseña<br></label>
-            <input type="password" formControlName="Contraseña2">
+        <mat-form-field class="caja-input">
+            <mat-label>Confirmar Contraseña</mat-label>
+            <input matInput  type="password"  formControlName="Contraseña2" >
+            <mat-icon matSuffix>vpn_key</mat-icon>
+        </mat-form-field>
         </li>
+            
         <li>
-            <button class="button" type="submit" [disabled]="formulario.invalid">Agregar</button>
+            <button class="button" type="submit" [disabled]="formulario.invalid">Registrarse</button>
         </li>
     </ul>
 </form>

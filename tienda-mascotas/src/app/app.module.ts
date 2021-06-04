@@ -10,10 +10,11 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatInputModule} from '@angular/material/input';
 import { FormularioRegistroComponent } from './components/formulario-registro/formulario-registro.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { IniciarSesionComponent } from './components/iniciar-sesion/iniciar-sesion.component';
-
+import {MatSelectModule} from '@angular/material/select';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +32,9 @@ import { IniciarSesionComponent } from './components/iniciar-sesion/iniciar-sesi
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

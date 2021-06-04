@@ -2,8 +2,12 @@
     <div id="logo">
         <ul>
             <li>Logo</li>
-            <li><mat-icon>account_circle</mat-icon><a [routerLink]="['/iniciar-sesion']" routerLinkActive="router-link-active" >Iniciar sesion</a>
-                <a [routerLink]="['/formulario-registro']" routerLinkActive="router-link-active" >Crear Cuenta</a>
+            <li>
+                <ul>
+                <mat-icon>account_circle</mat-icon>
+                <li><a [routerLink]="['/iniciar-sesion']" routerLinkActive="router-link-active" >Iniciar sesion</a></li>
+                <li class="sesion"><a [routerLink]="['/formulario-registro']" routerLinkActive="router-link-active" >Crear Cuenta</a></li>
+                </ul>
             </li>
         </ul>
     </div>
@@ -11,12 +15,12 @@
     <div id="menu">
         <a [routerLink]="['/']" routerLinkActive="router-link-active" >
             <button mat-button> 
-            <mat-icon aria-hidden="false" aria-label="Example home icon" class="imInicio">home</mat-icon>
-            <span class='inicio'>Inicio</span>
+                <mat-icon>home</mat-icon>
+                <span class='inicio'>Inicio</span>
             </button>
         </a>
       
-        <a [routerLink]="['/']" routerLinkActive="router-link-active"> <button mat-button [matMenuTriggerFor]="belowMenu">Categorías</button></a>
+        <button mat-button [matMenuTriggerFor]="belowMenu">Categorías</button>
             <mat-menu #belowMenu="matMenu" yPosition="below">
             <button mat-menu-item>Item 1</button>
             <button mat-menu-item>Item 2</button>

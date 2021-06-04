@@ -1,1 +1,25 @@
-  
+<form [formGroup]="formularioI" (ngSubmit)="EnviarDatos()" novalidate class="clase-form">
+    <ul>
+        <li>
+            <mat-form-field class="caja-input">
+                <mat-label>Correo Electrónico</mat-label>
+                <input matInput  type="email" placeholder="example@correo.com" formControlName="Correo" >
+                <mat-icon matSuffix>alternate_email</mat-icon>
+            </mat-form-field>
+        </li>
+        <li>
+            <mat-form-field class="caja-input">
+                <mat-label>Contraseña</mat-label>
+                <input matInput  type="password"  formControlName="Contraseña" >
+                <mat-icon matSuffix>vpn_key</mat-icon>
+            </mat-form-field>
+        </li>
+
+        <li>
+           <h3> Aqui debe ir un captcha :D</h3>
+        </li>
+        <li>
+            <button class="button" type="submit" [disabled]="formularioI.invalid">Ingresar</button>
+        </li>
+    </ul>   
+</form>

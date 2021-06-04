@@ -11,12 +11,21 @@ export class IniciarSesionComponent implements OnInit {
 
   constructor(private fb:FormBuilder ) {
     this.formularioI=this.fb.group({
- 
-
+      Correo:['',[Validators.required,Validators.email]],
+      Contraseña:['',[Validators.required]],
   });}
 
 
   ngOnInit(): void {
+  }
+
+  EnviarDatos() {
+    if (this.formularioI.valid) {
+      console.log(this.formularioI.value)
+    }
+    else{
+      alert("FILL ALL FIELDS")
+    }
   }
 
   
