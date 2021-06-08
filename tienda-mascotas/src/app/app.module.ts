@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -15,6 +14,7 @@ import { FormularioRegistroComponent } from './components/formulario-registro/fo
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { IniciarSesionComponent } from './components/iniciar-sesion/iniciar-sesion.component';
 import {MatSelectModule} from '@angular/material/select';
+import {HttpClientModule} from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +34,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    HttpClientModule,
 
   ],
   providers: [],
