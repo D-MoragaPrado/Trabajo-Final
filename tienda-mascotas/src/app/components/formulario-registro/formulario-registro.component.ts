@@ -40,12 +40,14 @@ export class FormularioRegistroComponent implements OnInit {
   }
 
  ObtenerComunas(){
-    let id_region = this.formulario.value.Region.region_id;
-    this.servicio.conseguirComunaPorRegion(id_region).subscribe(Listacomuna => {
+  this.comunas = [];
+    let id_reg = this.formulario.get('Region')?.value;
+    console.log(id_reg)
+    this.servicio.conseguirComunaPorRegion(id_reg).subscribe(Listacomuna => {
       for (let i = 0; i < Listacomuna.length; i++) {
         this.comunas.push(Listacomuna[i]);
-
       }
+      console.log(Listacomuna)
     })
  }
 
