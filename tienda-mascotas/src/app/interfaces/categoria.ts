@@ -1,5 +1,4 @@
 export interface Categoria {
+    id : number;
     name : string;
-    checked : boolean;
-    sub_categoria?: Categoria[];
   }

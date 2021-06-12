@@ -60,16 +60,12 @@ app.get('/categorias/gatos', (req : any, res : any) => {
 	})
 })
 
-app.get('/subcategorias/perros', (req : any, res : any) => {
-	connection.query('SELECT DISTINCT `subcategoria_id` FROM `producto` WHERE `categoria_principal_id`=1', (reqSQL : any, resSQL : any) => {
+app.get('/subcategorias', (req : any, res : any) => {
+	connection.query('SELECT DISTINCT `subcategoria_id` FROM `producto`', (reqSQL : any, resSQL : any) => {
 		res.status(200).send(resSQL)
 	})
 })
-app.get('/subcategorias/gatos', (req : any, res : any) => {
-	connection.query('SELECT DISTINCT `subcategoria_id` FROM `producto` WHERE `categoria_principal_id`=2', (reqSQL : any, resSQL : any) => {
-		res.status(200).send(resSQL)
-	})
-})
+
 app.get('/categorias/gatos/:id', (req : any, res : any) => {
     let idSubCategoria = req.params.id
 

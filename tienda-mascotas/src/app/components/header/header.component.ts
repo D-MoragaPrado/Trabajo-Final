@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Categoria } from 'src/app/interfaces/categoria';
+import { ManejoProductosService } from '../../services/manejo-productos.service'
+import { Categoria } from '../../interfaces/categoria';
+
 
 @Component({
   selector: 'app-header',
@@ -10,9 +12,14 @@ export class HeaderComponent implements OnInit {
 
   subCategorias : Array<Categoria> = []
 
-  constructor() { }
+  constructor(private servicioProducto : ManejoProductosService) { }
 
   ngOnInit(): void {
+    this.servicioProducto.getCategorias().subscribe((categoria) => {
+      for (let i = 0; i < categoria.length; i++) {
+        this.subCategorias.push(categoria[i])
+      }
+    })
   }
 
 }
