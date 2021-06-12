@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit {
     this.servicioProducto.getCategorias().subscribe((categoria) => {
       for (let i = 0; i < categoria.length; i++) {
         this.subCategorias.push(categoria[i])
+        console.log(categoria[i])
       }
     })
   }

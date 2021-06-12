@@ -61,7 +61,7 @@ app.get('/categorias/gatos', (req : any, res : any) => {
 })
 
 app.get('/subcategorias', (req : any, res : any) => {
-	connection.query('SELECT DISTINCT `subcategoria_id` FROM `producto`', (reqSQL : any, resSQL : any) => {
+	connection.query('SELECT DISTINT `subcategoria_id` FROM `producto`', (reqSQL : any, resSQL : any) => {
 		res.status(200).send(resSQL)
 	})
 })

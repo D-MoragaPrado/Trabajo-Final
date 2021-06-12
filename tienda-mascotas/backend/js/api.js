@@ -50,13 +50,8 @@ app.get('/categorias/gatos', function (req, res) {
         res.status(200).send(resSQL);
     });
 });
-app.get('/subcategorias/perros', function (req, res) {
-    connection.query('SELECT DISTINCT `subcategoria_id` FROM `producto` WHERE `categoria_principal_id`=1', function (reqSQL, resSQL) {
-        res.status(200).send(resSQL);
-    });
-});
-app.get('/subcategorias/gatos', function (req, res) {
-    connection.query('SELECT DISTINCT `subcategoria_id` FROM `producto` WHERE `categoria_principal_id`=2', function (reqSQL, resSQL) {
+app.get('/subcategorias', function (req, res) {
+    connection.query('SELECT DISTINT `subcategoria_id` FROM `producto`', function (reqSQL, resSQL) {
         res.status(200).send(resSQL);
     });
 });
