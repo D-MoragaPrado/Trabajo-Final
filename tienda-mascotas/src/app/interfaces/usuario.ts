@@ -6,7 +6,7 @@ export interface Usuario {
     nombres     : string;
     apellidos   : string;
     rut         : string;
-    region      : Region;
-    comuna      : Comuna;
+    region      : number;
+    comuna      : number;
     password    : string;
 }

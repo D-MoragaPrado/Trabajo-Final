@@ -40,9 +40,35 @@ app.get('/producto/:id', function (req, res) {
         }
     });
 });
+app.get('/categorias/perros', function (req, res) {
+    connection.query('SELECT * FROM `producto` WHERE `categoria_principal_id`=1', function (reqSQL, resSQL) {
+        res.status(200).send(resSQL);
+    });
+});
+app.get('/categorias/gatos', function (req, res) {
+    connection.query('SELECT * FROM `producto` WHERE `categoria_principal_id`=2', function (reqSQL, resSQL) {
+        res.status(200).send(resSQL);
+    });
+});
+app.get('/subcategorias/perros', function (req, res) {
+    connection.query('SELECT DISTINCT `subcategoria_id` FROM `producto` WHERE `categoria_principal_id`=1', function (reqSQL, resSQL) {
+        res.status(200).send(resSQL);
+    });
+});
+app.get('/subcategorias/gatos', function (req, res) {
+    connection.query('SELECT DISTINCT `subcategoria_id` FROM `producto` WHERE `categoria_principal_id`=2', function (reqSQL, resSQL) {
+        res.status(200).send(resSQL);
+    });
+});
+app.get('/categorias/gatos/:id', function (req, res) {
+    var idSubCategoria = req.params.id;
+});
+app.get('/categorias/perros/:id', function (req, res) {
+    var idSubCategoria = req.params.id;
+});
 //END CRUD Productos
 //!!CRUD Usuarios
-app.get('/crearUsuario', function (req, res) {
+app.post('/crearUsuario', function (req, res) {
     var correo = req.body.correo;
     var nombres = req.body.nombres;
     var apellidos = req.body.apellidos;
@@ -50,15 +76,21 @@ app.get('/crearUsuario', function (req, res) {
     var region = req.body.region;
     var comuna = req.body.comuna;
     var password = req.body.password;
+    console.log(req.body);
+    connection.query("INSERT INTO `usuario`(`correo`, `nombres`, `apellidos`, `rut`, `password`, `region_id`, `comuna_id`)VALUES('" + req.body.correo + "','" + req.body.nombres + "','" + req.body.apellidos + "','" + req.body.rut + "','" + req.body.password + "','" + req.body.region + "','" + req.body.comuna + "')", function (req1, resultados) {
+        res.status(201).send("Usuario creado");
+    });
 });
+// Checkeo de correo existente en bd
 app.get('/formulario-registro/:correo', function (req, res) {
     var correo = req.params.correo;
+    var existe = true;
     connection.query('SELECT * FROM `usuario` WHERE correo=?', correo, function (reqSQL, resSQL) {
         if (resSQL == '') {
-            res.send("Correo sin usuario");
+            res.send(false);
         }
         else {
-            res.send("Correo ya utilizado! use otro porfis");
+            res.send(true);
         }
     });
 });

@@ -48,29 +48,67 @@ app.get('/producto/:id', (req : any, res : any) => {
     })
 })
 
+app.get('/categorias/perros', (req : any, res : any) => {
+	connection.query('SELECT * FROM `producto` WHERE `categoria_principal_id`=1', (reqSQL : any, resSQL : any) => {
+		res.status(200).send(resSQL)
+	})
+})
+
+app.get('/categorias/gatos', (req : any, res : any) => {
+	connection.query('SELECT * FROM `producto` WHERE `categoria_principal_id`=2', (reqSQL : any, resSQL : any) => {
+		res.status(200).send(resSQL)
+	})
+})
+
+app.get('/subcategorias/perros', (req : any, res : any) => {
+	connection.query('SELECT DISTINCT `subcategoria_id` FROM `producto` WHERE `categoria_principal_id`=1', (reqSQL : any, resSQL : any) => {
+		res.status(200).send(resSQL)
+	})
+})
+app.get('/subcategorias/gatos', (req : any, res : any) => {
+	connection.query('SELECT DISTINCT `subcategoria_id` FROM `producto` WHERE `categoria_principal_id`=2', (reqSQL : any, resSQL : any) => {
+		res.status(200).send(resSQL)
+	})
+})
+app.get('/categorias/gatos/:id', (req : any, res : any) => {
+    let idSubCategoria = req.params.id
+
+})
+
+app.get('/categorias/perros/:id', (req : any, res : any) => {
+    let idSubCategoria = req.params.id
+
+})
 //END CRUD Productos
 
 
 //!!CRUD Usuarios
 
-app.get('/crearUsuario', (req : any, res : any) => {
-    let correo = req.body.correo
-    let nombres = req.body.nombres
-    let apellidos = req.body.apellidos
-    let rut = req.body.rut
-    let region = req.body.region
-    let comuna = req.body.comuna
-    let password = req.body.password
+app.post('/crearUsuario', (req : any, res : any) => {
+    let correo = req.body.correo;
+    let nombres = req.body.nombres;
+    let apellidos = req.body.apellidos;
+    let rut = req.body.rut;
+    let region = req.body.region;
+    let comuna = req.body.comuna;
+    let password = req.body.password;
+    console.log(req.body);
+    connection.query("INSERT INTO `usuario`(`correo`, `nombres`, `apellidos`, `rut`, `password`, `region_id`, `comuna_id`)VALUES('"+req.body.correo+"','"+req.body.nombres+"','"+req.body.apellidos+"','"+req.body.rut+"','"+req.body.password+"','"+req.body.region+"','"+req.body.comuna+"')",(req1:any,resultados:any)=>{
+        res.status(201).send("Usuario creado");
+     });
 })
+
+// Checkeo de correo existente en bd
 
 app.get('/formulario-registro/:correo', (req : any , res : any) => {
     let correo = req.params.correo
+    let existe:boolean=true;
     connection.query('SELECT * FROM `usuario` WHERE correo=?', correo, (reqSQL : any, resSQL : any) => {
         if(resSQL == ''){
-            res.send("Correo sin usuario")
+            res.send(false);
         }
         else{
-            res.send("Correo ya utilizado! use otro porfis")
+            res.send(true);
         }
     })
 })

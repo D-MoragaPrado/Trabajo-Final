@@ -1,12 +1,16 @@
 <nav>
     <div id="logo">
         <ul>
-            <li>Logo</li>
+            <li><img src="./../../../assets/icon_tienda/logo_nombre.png" alt="a"></li>
             <li>
-                <ul>
-                <mat-icon>account_circle</mat-icon>
-                <li><a [routerLink]="['/iniciar-sesion']" routerLinkActive="router-link-active" >Iniciar sesion</a></li>
-                <li class="sesion"><a [routerLink]="['/formulario-registro']" routerLinkActive="router-link-active" >Crear Cuenta</a></li>
+                <ul id="sesion">
+                <mat-icon id="logo_cuenta">account_circle</mat-icon>
+                <li>
+                    <a [routerLink]="['/iniciar-sesion']" routerLinkActive="router-link-active" >Iniciar sesion</a>
+                </li>
+                <li class="sesion">
+                    <a [routerLink]="['/formulario-registro']" routerLinkActive="router-link-active" >Crear Cuenta</a>
+                </li>
                 </ul>
             </li>
         </ul>
@@ -20,11 +24,20 @@
             </button>
         </a>
       
-        <button mat-button [matMenuTriggerFor]="belowMenu">Categorías</button>
-            <mat-menu #belowMenu="matMenu" yPosition="below">
-            <button mat-menu-item>Item 1</button>
-            <button mat-menu-item>Item 2</button>
-            </mat-menu>
+        <button mat-button [matMenuTriggerFor]="categorias">Categorías</button>
+        <mat-menu #categorias="matMenu" yPosition="below">
+            <button mat-menu-item [matMenuTriggerFor]="perros">Perros</button>
+            <button mat-menu-item [matMenuTriggerFor]="gatos">Gatos</button>
+        </mat-menu>
+
+        <mat-menu #perros='matMenu'>
+            <button mat-menu-item *ngFor="let categoria of subCategorias">{{categoria.name}}</button>
+        </mat-menu>
+
+        <mat-menu #gatos='matMenu'>
+            <button mat-menu-item *ngFor="let categoria of subCategorias">{{categoria.name}}</button>
+        </mat-menu>
+        
     
         
         <button mat-button>Contacto</button>
