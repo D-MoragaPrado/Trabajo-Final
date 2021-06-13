@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Usuario } from '../interfaces/usuario';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,6 +19,6 @@ export class ManejoUsuariosService {
     return this.servicio.post(`${this.url}/crearUsuario`,newUsuario);
   }
   checkeoCorreo(correo :string):Observable<any>{
-    return this.servicio.get(`${this.url}formulario-registro/${correo}`);
+    return this.servicio.get(`${this.url}/formulario-registro/${correo}`);
   }
 }

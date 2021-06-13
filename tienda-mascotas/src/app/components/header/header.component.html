@@ -41,11 +41,13 @@
     
         
         <button mat-button>Contacto</button>
-        <div id="carrito">
-        <button mat-button>
-            <mat-icon> local_grocery_store</mat-icon>
-            carrito</button>
-        </div>
+        <a [routerLink]="['/carrito']" routerLinkActive="router-link-active" >
+            <div id="carrito">
+            <button mat-button>
+                <mat-icon> local_grocery_store</mat-icon>
+                carrito</button>
+            </div>
+        </a>
     </div>
 
 </nav>

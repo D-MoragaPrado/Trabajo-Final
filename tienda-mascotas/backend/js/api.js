@@ -7,6 +7,7 @@ var mysql = require('mysql');
 app.use(bodyParser.urlencoded({
     extended: false
 }));
+app.use(bodyParser.json({ extended: true }));
 app.use(cors());
 var Configuracion = {
     server: "127.0.0.1",
@@ -50,13 +51,8 @@ app.get('/categorias/gatos', function (req, res) {
         res.status(200).send(resSQL);
     });
 });
-app.get('/subcategorias/perros', function (req, res) {
-    connection.query('SELECT DISTINCT `subcategoria_id` FROM `producto` WHERE `categoria_principal_id`=1', function (reqSQL, resSQL) {
-        res.status(200).send(resSQL);
-    });
-});
-app.get('/subcategorias/gatos', function (req, res) {
-    connection.query('SELECT DISTINCT `subcategoria_id` FROM `producto` WHERE `categoria_principal_id`=2', function (reqSQL, resSQL) {
+app.get('/subcategorias', function (req, res) {
+    connection.query('SELECT DISTINT `subcategoria_id` FROM `producto`', function (reqSQL, resSQL) {
         res.status(200).send(resSQL);
     });
 });
@@ -77,14 +73,13 @@ app.post('/crearUsuario', function (req, res) {
     var comuna = req.body.comuna;
     var password = req.body.password;
     console.log(req.body);
-    connection.query("INSERT INTO `usuario`(`correo`, `nombres`, `apellidos`, `rut`, `password`, `region_id`, `comuna_id`)VALUES('" + req.body.correo + "','" + req.body.nombres + "','" + req.body.apellidos + "','" + req.body.rut + "','" + req.body.password + "','" + req.body.region + "','" + req.body.comuna + "')", function (req1, resultados) {
+    connection.query("INSERT INTO `usuario`(`correo`, `nombres`, `apellidos`, `rut`, `password`, `region_id`, `comuna_id`)VALUES('" + correo + "','" + nombres + "','" + apellidos + "','" + rut + "','" + password + "','" + region + "','" + comuna + "')", function (req1, resultados) {
         res.status(201).send("Usuario creado");
     });
 });
 // Checkeo de correo existente en bd
 app.get('/formulario-registro/:correo', function (req, res) {
     var correo = req.params.correo;
-    var existe = true;
     connection.query('SELECT * FROM `usuario` WHERE correo=?', correo, function (reqSQL, resSQL) {
         if (resSQL == '') {
             res.send(false);

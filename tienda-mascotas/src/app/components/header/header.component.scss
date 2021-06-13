@@ -7,13 +7,15 @@ nav{
 }
 #menu{
     width: 100%;
-    background-color: darkcyan;
+    //background-color: darkcyan;
+    background-color: #f01a52;
     height: 50px;
 }
 
 #logo{
     width: 100%;
     height: 50px;
+    
 }
 
 #logo ul{
@@ -26,9 +28,11 @@ nav{
 }
 
 #logo img{
-    width: 40px;
-    height: 40px;
-    position: absolute;
+    padding-top: 5px;
+    width: 100px;
+    height: 40x;
+    //position: absolute;
+    float: left;
 }
 
 ul{
@@ -40,6 +44,7 @@ ul{
 #logo_cuenta{
     margin-top: 11px;
     margin-right: 5px;
+    color:white;
 }
 
 #sesion li{
@@ -58,7 +63,8 @@ ul{
 
 button{
     border:0px;
-    background-color:  darkcyan;
+    //background-color:  darkcyan;
+    background-color: #f01a52;
     padding: 10px;
     font-size:14px;
     color:rgba(245, 245, 245, 0.863);
@@ -71,7 +77,6 @@ button:hover{
 }
 
 .inicio{
-    color: chartreuse;
+    color: white;
 }
-
 

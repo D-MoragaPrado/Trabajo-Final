@@ -15,6 +15,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { IniciarSesionComponent } from './components/iniciar-sesion/iniciar-sesion.component';
 import {MatSelectModule} from '@angular/material/select';
 import {HttpClientModule} from '@angular/common/http';
+import { ProductoComponent } from './components/producto/producto.component';
+import { CarritoComponent } from './components/carrito/carrito.component';
+import { CategoriasComponent } from './components/categorias/categorias.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +25,10 @@ import {HttpClientModule} from '@angular/common/http';
     FooterComponent,
     HeaderComponent,
     FormularioRegistroComponent,
-    IniciarSesionComponent
+    IniciarSesionComponent,
+    ProductoComponent,
+    CarritoComponent,
+    CategoriasComponent
   ],
   imports: [
     BrowserModule,

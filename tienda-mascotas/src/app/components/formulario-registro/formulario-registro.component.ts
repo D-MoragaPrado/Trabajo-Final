@@ -16,13 +16,13 @@ export class FormularioRegistroComponent implements OnInit {
   formulario:FormGroup;
   regiones : Array<Region> = [];
   comunas : Array<Comuna> = [];
-  exis:boolean=true;
+  //exis:boolean=false;
 
   constructor(private fb:FormBuilder,private router : Router, private servicioLocalidad : LocalidadService , private servicioUsuario: ManejoUsuariosService) {
     this.formulario=this.fb.group({
       Nombres:['',[Validators.required]],
       Apellidos:['',[Validators.required]],
-      Rut:['',[Validators.required]],
+      Rut:['',[Validators.required,Validators.pattern("[1-9][0-9]{6,7}[-][0-9kK]")]],
       Region:['',[Validators.required]],
       Comuna:['',[Validators.required]],
       Correo:['',[Validators.required,Validators.email]],
@@ -55,23 +55,21 @@ export class FormularioRegistroComponent implements OnInit {
 
 
   EnviarDatos() {
-    /*this.servicioUsuario.checkeoCorreo(this.formulario.value.Correo).subscribe((existe) => {
-      //this.exis=existe;
-      console.log('viendo existencia:');
-      console.log(existe);
-    })*/
+    let exis:boolean=false;
     if (this.formulario.valid) {
+      this.servicioUsuario.checkeoCorreo(this.formulario.value.Correo).subscribe((existe) => {
+        exis=existe;
+        console.log('viendo existencia:');
+        console.log(exis);
+      });
+
       if(this.formulario.value.Contrasenia != this.formulario.value.Contrasenia2){
-        console.log("no son iguales");
         alert("Las contraseñas no coinciden");
-      }
-      /*else if(true)){
-        this.servicioUsuario.checkeoCorreo(this.formulario.value.Correo)
-        console.log("ya existe");
-        alert("Correo ya registrado");
-      }*/
-      else{
-        console.log(this.formulario.value)
+        
+      }else if(exis){
+        console.log(this.formulario.value.Correo);
+        alert("Correo ya registrado"); 
+      }else{
         let nuevoUsuario:Usuario={
           correo:this.formulario.get('Correo')?.value,
           nombres:this.formulario.get('Nombres')?.value,
@@ -80,12 +78,11 @@ export class FormularioRegistroComponent implements OnInit {
           region:this.formulario.get('Region')?.value,
           comuna:this.formulario.get('Comuna')?.value,
           password:this.formulario.get('Contrasenia')?.value,
-        };
-      
+        };     
         this.servicioUsuario.RegistrarUsuario(nuevoUsuario).subscribe(usuario=>{
           console.log(usuario);
         });
-        //this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/');
       }
     }
   }
