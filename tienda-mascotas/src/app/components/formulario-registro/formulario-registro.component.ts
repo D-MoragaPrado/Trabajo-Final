@@ -26,8 +26,8 @@ export class FormularioRegistroComponent implements OnInit {
       Region:['',[Validators.required]],
       Comuna:['',[Validators.required]],
       Correo:['',[Validators.required,Validators.email]],
-      Contrasenia:['',[Validators.required]],
-      Contrasenia2:['',[Validators.required]],
+      Contrasenia:['',[Validators.required,Validators.maxLength(15)]],
+      Contrasenia2:['',[Validators.required,Validators.maxLength(15)]],
     });}
 
   ngOnInit(): void {
@@ -55,34 +55,35 @@ export class FormularioRegistroComponent implements OnInit {
 
 
   EnviarDatos() {
-    let exis:boolean=false;
     if (this.formulario.valid) {
-      this.servicioUsuario.checkeoCorreo(this.formulario.value.Correo).subscribe((existe) => {
-        exis=existe;
-        console.log('viendo existencia:');
-        console.log(exis);
-      });
-
       if(this.formulario.value.Contrasenia != this.formulario.value.Contrasenia2){
         alert("Las contraseñas no coinciden");
-        
-      }else if(exis){
-        console.log(this.formulario.value.Correo);
-        alert("Correo ya registrado"); 
       }else{
-        let nuevoUsuario:Usuario={
-          correo:this.formulario.get('Correo')?.value,
-          nombres:this.formulario.get('Nombres')?.value,
-          apellidos:this.formulario.get('Apellidos')?.value,
-          rut:this.formulario.get('Rut')?.value,
-          region:this.formulario.get('Region')?.value,
-          comuna:this.formulario.get('Comuna')?.value,
-          password:this.formulario.get('Contrasenia')?.value,
-        };     
-        this.servicioUsuario.RegistrarUsuario(nuevoUsuario).subscribe(usuario=>{
-          console.log(usuario);
+        this.servicioUsuario.checkeoCorreo(this.formulario.value.Correo).subscribe((existe) => {
+          console.log('viendo existencia:',existe);
+          if(existe){    
+            alert("Correo ya registrado"); 
+          }else{
+            let nuevoUsuario:Usuario={
+              correo:this.formulario.get('Correo')?.value,
+              nombres:this.formulario.get('Nombres')?.value,
+              apellidos:this.formulario.get('Apellidos')?.value,
+              rut:this.formulario.get('Rut')?.value,
+              region:this.formulario.get('Region')?.value,
+              comuna:this.formulario.get('Comuna')?.value,
+              password:this.formulario.get('Contrasenia')?.value,
+            };     
+            this.servicioUsuario.RegistrarUsuario(nuevoUsuario).subscribe(usuario=>{
+              console.log(usuario);
+            });
+            this.router.navigateByUrl('/');
+            alert("Usuario Registrado correctamente"); 
+          }
         });
-        this.router.navigateByUrl('/');
+
+
+
+        
       }
     }
   }

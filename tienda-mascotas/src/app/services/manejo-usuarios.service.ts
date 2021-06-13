@@ -21,4 +21,7 @@ export class ManejoUsuariosService {
   checkeoCorreo(correo :string):Observable<any>{
     return this.servicio.get(`${this.url}/formulario-registro/${correo}`);
   }
+  iniciarSesion(usuario:Usuario):Observable<any>{
+    return this.servicio.post(`${this.url}/iniciar-sesion`,usuario);
+  }
 }

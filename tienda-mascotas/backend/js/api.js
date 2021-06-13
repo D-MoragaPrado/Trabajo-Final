@@ -1,4 +1,6 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var md5_typescript_1 = require("md5-typescript");
 var bodyParser = require('body-parser');
 var express = require('express');
 var app = express();
@@ -71,10 +73,24 @@ app.post('/crearUsuario', function (req, res) {
     var rut = req.body.rut;
     var region = req.body.region;
     var comuna = req.body.comuna;
-    var password = req.body.password;
-    console.log(req.body);
+    var password = md5_typescript_1.Md5.init(req.body.password);
     connection.query("INSERT INTO `usuario`(`correo`, `nombres`, `apellidos`, `rut`, `password`, `region_id`, `comuna_id`)VALUES('" + correo + "','" + nombres + "','" + apellidos + "','" + rut + "','" + password + "','" + region + "','" + comuna + "')", function (req1, resultados) {
         res.status(201).send("Usuario creado");
+    });
+});
+app.post('/iniciar-sesion', function (req, res) {
+    var correo = req.body.correo;
+    var password = md5_typescript_1.Md5.init(req.body.password);
+    console.log(password);
+    connection.query('SELECT * FROM `usuario` WHERE correo=? AND password=?', [correo, password], function (reqSQL, resSQL) {
+        if (resSQL == '') {
+            console.log("no existe");
+            res.send(false);
+        }
+        else {
+            console.log("Existee");
+            res.send(true);
+        }
     });
 });
 // Checkeo de correo existente en bd

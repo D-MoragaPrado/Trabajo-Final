@@ -10,15 +10,19 @@
         <li>
             <mat-form-field class="caja-input">
                 <mat-label>Contraseña</mat-label>
-                <input matInput  type="password"  formControlName="Contraseña" >
+                <input matInput  type="password"  formControlName="Contrasenia" >
                 <mat-icon matSuffix>vpn_key</mat-icon>
             </mat-form-field>
         </li>
-
         <li>
            <h3> Aqui debe ir un captcha :D</h3>
      
            
+        </li>
+        <li>
+            <section class="checkbox-section">
+            <mat-checkbox class="checkbox-margin" [color]=task formControlName="checkbox">Recordar Contraseña(proximamente)</mat-checkbox>
+            </section>
         </li>
         <li>
             <button class="button" type="submit" [disabled]="formularioI.invalid">Ingresar</button>

@@ -1,8 +1,10 @@
+import {Md5} from "md5-typescript";
 const bodyParser = require('body-parser')
 const express = require('express')
 const app = express()
 const cors = require('cors')
 const mysql = require('mysql')
+
 
 app.use(bodyParser.urlencoded({
     extended : false
@@ -88,13 +90,27 @@ app.post('/crearUsuario', (req : any, res : any) => {
     let rut = req.body.rut;
     let region = req.body.region;
     let comuna = req.body.comuna;
-    let password = req.body.password;
-    console.log(req.body);
+    let password = Md5.init(req.body.password);
     connection.query("INSERT INTO `usuario`(`correo`, `nombres`, `apellidos`, `rut`, `password`, `region_id`, `comuna_id`)VALUES('"+correo+"','"+nombres+"','"+apellidos+"','"+rut+"','"+password+"','"+region+"','"+comuna+"')",(req1:any,resultados:any)=>{
         res.status(201).send("Usuario creado");
      });
 })
 
+app.post('/iniciar-sesion', (req : any, res : any) => {
+    let correo=req.body.correo;
+    let password = Md5.init(req.body.password);
+    console.log(password);
+    connection.query('SELECT * FROM `usuario` WHERE correo=? AND password=?',[correo,password], (reqSQL : any, resSQL : any) => {
+        if(resSQL == ''){
+            console.log("no existe");
+            res.send(false);
+        }
+        else{
+            console.log("Existee");
+            res.send(true);
+        }
+    })
+})   
 // Checkeo de correo existente en bd
 
 app.get('/formulario-registro/:correo', (req : any , res : any) => {
