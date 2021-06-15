@@ -1,4 +1,9 @@
-img{
-    width   : 400px;
-    height  : 400px;
+#sellos_calidad ul{
+    list-style-type: none;
+    display: inline-flex;
+}
+
+#sellos_calidad ul li{
+    margin: 1em;
+    width: 33.3%;
 }
