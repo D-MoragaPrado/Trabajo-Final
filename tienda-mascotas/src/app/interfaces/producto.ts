@@ -8,5 +8,4 @@ export interface Producto {
     stock           : number;
     comentarios     : Array<string>;
     calificacion    : any;
-    talla           : Array<string>;
 }

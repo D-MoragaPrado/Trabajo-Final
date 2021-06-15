@@ -32,14 +32,15 @@ connection.connect(function (err) {
 //!!CRUD Productos
 app.get('/producto/:id', function (req, res) {
     var idProducto = req.params.id;
-    connection.query('SELECT * FROM producto WHERE id=?', idProducto, function (reqSQL, resSQL) {
-        if (res.status == 200) {
-            console.log(resSQL);
-            res.status(200).send(reqSQL);
-        }
-        else {
+    connection.query('SELECT * FROM `producto` WHERE id=?', idProducto, function (reqSQL, resSQL) {
+        //res.status(200).send(reqSQL); 
+        if (resSQL == '') {
             console.log('Producto no existente'); //???
             res.status(404);
+        }
+        else {
+            console.log(resSQL);
+            res.status(200).send(resSQL);
         }
     });
 });
@@ -53,16 +54,26 @@ app.get('/categorias/gatos', function (req, res) {
         res.status(200).send(resSQL);
     });
 });
-app.get('/subcategorias', function (req, res) {
-    connection.query('SELECT DISTINT `subcategoria_id` FROM `producto`', function (reqSQL, resSQL) {
+app.get('/subcategorias/:id', function (req, res) {
+    var id_categoria = req.params.id;
+    connection.query('SELECT * From `categorias` WHERE `categoria_id` IN (SELECT DISTINCT `subcategoria_id` FROM `producto` WHERE `categoria_principal_id`=?)', id_categoria, function (reqSQL, resSQL) {
         res.status(200).send(resSQL);
     });
 });
-app.get('/categorias/gatos/:id', function (req, res) {
-    var idSubCategoria = req.params.id;
-});
-app.get('/categorias/perros/:id', function (req, res) {
-    var idSubCategoria = req.params.id;
+app.get('/subcategorias/:cat/:subcat', function (req, res) {
+    var categoria = req.params.cat;
+    var subCategoria = req.params.subcat;
+    console.log(categoria, subCategoria, "1");
+    connection.query('SELECT * FROM producto WHERE (categoria_principal_id=(SELECT categoria_id FROM categorias WHERE nombre_categoria=?) AND subcategoria_id=(SELECT categoria_id FROM categorias WHERE nombre_categoria=?))', [categoria, subCategoria], function (reqSQL, resSQL) {
+        if (resSQL == '') {
+            console.log('Products no existente');
+            res.status(404);
+        }
+        else {
+            console.log(resSQL);
+            res.status(200).send(resSQL);
+        }
+    });
 });
 //END CRUD Productos
 //!!CRUD Usuarios

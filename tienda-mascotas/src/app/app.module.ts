@@ -20,6 +20,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {HttpClientModule} from '@angular/common/http';
+import { SubcategoriaComponent } from './components/subcategoria/subcategoria.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {HttpClientModule} from '@angular/common/http';
     IniciarSesionComponent,
     ProductoComponent,
     CarritoComponent,
-    CategoriasComponent
+    CategoriasComponent,
+    SubcategoriaComponent
   ],
   imports: [
     BrowserModule,

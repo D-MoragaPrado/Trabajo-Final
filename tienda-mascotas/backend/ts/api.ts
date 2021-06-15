@@ -38,15 +38,17 @@ connection.connect( function(err : any){
 //!!CRUD Productos
 
 app.get('/producto/:id', (req : any, res : any) => {
-    let idProducto = req.params.id
-    connection.query('SELECT * FROM producto WHERE id=?', idProducto, (reqSQL : any, resSQL : any) =>{
-        if(res.status == 200){
-            console.log(resSQL)
-            res.status(200).send(reqSQL)
+    let idProducto = req.params.id;
+    connection.query('SELECT * FROM `producto` WHERE id=?', idProducto, (reqSQL : any, resSQL : any) =>{
+        //res.status(200).send(reqSQL); 
+        if(resSQL == ''){
+            console.log('Producto no existente');        //???
+            res.status(404);
+            
         }
         else{
-            console.log('Producto no existente')        //???
-            res.status(404)
+            console.log(resSQL);
+            res.status(200).send(resSQL);    
         } 
     })
 })
@@ -63,21 +65,32 @@ app.get('/categorias/gatos', (req : any, res : any) => {
 	})
 })
 
-app.get('/subcategorias', (req : any, res : any) => {
-	connection.query('SELECT DISTINT `subcategoria_id` FROM `producto`', (reqSQL : any, resSQL : any) => {
-		res.status(200).send(resSQL)
+app.get('/subcategorias/:id', (req : any, res : any) => {
+    let id_categoria = req.params.id;
+	connection.query('SELECT * From `categorias` WHERE `categoria_id` IN (SELECT DISTINCT `subcategoria_id` FROM `producto` WHERE `categoria_principal_id`=?)',id_categoria, (reqSQL : any, resSQL : any) => {
+		res.status(200).send(resSQL);    
 	})
 })
 
-app.get('/categorias/gatos/:id', (req : any, res : any) => {
-    let idSubCategoria = req.params.id
+app.get('/subcategorias/:cat/:subcat', (req : any, res : any) => {
+    let categoria = req.params.cat;
+    let subCategoria = req.params.subcat;
+    console.log(categoria,subCategoria,"1");
+    connection.query('SELECT * FROM producto WHERE (categoria_principal_id=(SELECT categoria_id FROM categorias WHERE nombre_categoria=?) AND subcategoria_id=(SELECT categoria_id FROM categorias WHERE nombre_categoria=?))',[categoria,subCategoria], (reqSQL : any, resSQL : any) => {
+		if(resSQL == ''){
+            console.log('Products no existente');
+            res.status(404);
+            
+        }
+        else{
+            console.log(resSQL);
+            res.status(200).send(resSQL);    
+        } 
+	})
 
 })
 
-app.get('/categorias/perros/:id', (req : any, res : any) => {
-    let idSubCategoria = req.params.id
 
-})
 //END CRUD Productos
 
 

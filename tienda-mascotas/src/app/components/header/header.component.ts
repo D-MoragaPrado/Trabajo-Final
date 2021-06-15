@@ -9,17 +9,25 @@ import { Categoria } from 'src/app/interfaces/categoria';
 })
 export class HeaderComponent implements OnInit {
 
-  subCategorias : Array<Categoria> = []
+  subCategoriasPerro : Array<Categoria> = [];
+  subCategoriasGato : Array<Categoria> = [];
+
 
   constructor(private servicioProducto : ManejoProductosService) { }
 
   ngOnInit(): void {
-    this.servicioProducto.getCategorias().subscribe((categoria) => {
+    this.servicioProducto.getCategorias(1).subscribe((categoriaP) => {
+      for (let i = 0; i < categoriaP.length; i++) {
+        this.subCategoriasPerro.push(categoriaP[i])
+        console.log(categoriaP[i])
+      }
+    });
+    this.servicioProducto.getCategorias(2).subscribe((categoria) => {
       for (let i = 0; i < categoria.length; i++) {
-        this.subCategorias.push(categoria[i])
+        this.subCategoriasGato.push(categoria[i])
         console.log(categoria[i])
       }
-    })
+    });
   }
 
 }

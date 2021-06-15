@@ -18,7 +18,7 @@
 
     <div id="menu">
         <a [routerLink]="['/']" routerLinkActive="router-link-active" >
-            <button mat-button> 
+            <button mat-button > 
                 <mat-icon>home</mat-icon>
                 <span class='inicio'>Inicio</span>
             </button>
@@ -26,16 +26,26 @@
       
         <button mat-button [matMenuTriggerFor]="categorias">Categorías</button>
         <mat-menu #categorias="matMenu" yPosition="below">
-            <button mat-menu-item [matMenuTriggerFor]="perros">Perros</button>
-            <button mat-menu-item [matMenuTriggerFor]="gatos">Gatos</button>
+            <a [routerLink]="['/categorias/Perro']" routerLinkActive="router-link-active" >
+                <button class='btncat' mat-menu-item [matMenuTriggerFor]="perros">Perro</button>
+            </a>
+            <a [routerLink]="['/categorias/Gato']" routerLinkActive="router-link-active" >
+                <button class='btncat' mat-menu-item [matMenuTriggerFor]="gatos">Gato</button>
+            </a>
         </mat-menu>
 
         <mat-menu #perros='matMenu'>
-            <button mat-menu-item *ngFor="let categoria of subCategorias">{{categoria.name}}</button>
+            
+            <button class='btncat' mat-menu-item *ngFor="let subcategoria of subCategoriasPerro">
+                <a [routerLink]="['/categorias','Perro',subcategoria.nombre_categoria]" routerLinkActive="router-link-active" >
+                {{subcategoria.nombre_categoria}}</a></button>
+            
         </mat-menu>
 
         <mat-menu #gatos='matMenu'>
-            <button mat-menu-item *ngFor="let categoria of subCategorias">{{categoria.name}}</button>
+            <button class='btncat' mat-menu-item *ngFor="let subcategoria of subCategoriasGato">
+                <a [routerLink]="['/categorias','Gato',subcategoria.nombre_categoria]" routerLinkActive="router-link-active" >
+                {{subcategoria.nombre_categoria}}</a></button>
         </mat-menu>
         
     

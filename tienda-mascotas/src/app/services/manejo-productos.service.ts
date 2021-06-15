@@ -11,8 +11,23 @@ export class ManejoProductosService {
 
   constructor(private servicio : HttpClient) { }
 
-  getCategorias():Observable<any>{
-    return this.servicio.get(`${this.url}/subcategorias`)
+  getCategorias(id_categoria:number):Observable<any>{
+    console.log(id_categoria);
+    return this.servicio.get(`${this.url}/subcategorias/${id_categoria}`);
   }
 
+  getProductosPerro():Observable<any>{
+    return this.servicio.get(`${this.url}/categorias/perros`);
+  }
+  getProductosGato():Observable<any>{
+    return this.servicio.get(`${this.url}/categorias/gatos`);
+  }
+
+  getProducto(id_producto:number):Observable<any>{
+    console.log(id_producto);
+    return this.servicio.get(`${this.url}/producto/${id_producto}`);
+  }
+  getProductosSubcategoria(name_cat:string, name_subcat:string):Observable<any>{
+    return this.servicio.get(`${this.url}/subcategorias/${name_cat}/${name_subcat}`);
+  }
 }

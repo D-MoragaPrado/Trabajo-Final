@@ -69,7 +69,7 @@ button{
     font-size:14px;
     color:rgba(245, 245, 245, 0.863);
     vertical-align: middle;
-    
+
 }
 
 button:hover{
@@ -78,5 +78,11 @@ button:hover{
 
 .inicio{
     color: white;
+}
+.btncat{
+    background-color: #f01a52;
+}
+.btncat:hover{
+    background-color: #f01a53a1;
 }
 
