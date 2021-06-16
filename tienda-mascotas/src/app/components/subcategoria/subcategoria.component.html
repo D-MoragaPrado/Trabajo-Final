@@ -11,13 +11,26 @@
         <li *ngFor = "let producto of productos">
             <a [routerLink]="['/producto',producto.id]" routerLinkActive="router-link-active" >
             <button class="btnGigante">
-            {{producto.nombre}}
-            <p><img src="{{producto.src_imagen}}" class="imagen"></p>
-            
-            ${{producto.precio}}
-            
+                <mat-card class="card">
+                    <img mat-card-image src="{{producto.src_imagen}}">
+                    <mat-card-header>
+                        <mat-card-title class="card-titulo">{{producto.nombre}}</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <p>Por PetShop</p>
+                        ${{producto.precio}} CLP
+                        <ng-template #t let-fill="fill">
+                            <span class="star" [class.full]="fill==100">
+                                <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+                            </span>
+                        </ng-template>
+                        <p><ngb-rating [(rate)]=producto.calificacion [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating></p>
+                        <pre>Rate: <b>{{producto.calificacion}}</b></pre>
+                    </mat-card-content>
+                    
+                  </mat-card>
             </button>
             </a>
         </li>
-        </ul>
+    </ul>
 </div>

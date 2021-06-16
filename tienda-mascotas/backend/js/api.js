@@ -85,7 +85,9 @@ app.post('/crearUsuario', function (req, res) {
     var region = req.body.region;
     var comuna = req.body.comuna;
     var password = md5_typescript_1.Md5.init(req.body.password);
-    connection.query("INSERT INTO `usuario`(`correo`, `nombres`, `apellidos`, `rut`, `password`, `region_id`, `comuna_id`)VALUES('" + correo + "','" + nombres + "','" + apellidos + "','" + rut + "','" + password + "','" + region + "','" + comuna + "')", function (req1, resultados) {
+    var pregunta = req.body.pregunta;
+    var respuesta = md5_typescript_1.Md5.init(req.body.respuesta);
+    connection.query("INSERT INTO `usuario`(`correo`, `nombres`, `apellidos`, `rut`, `password`, `region_id`, `comuna_id`,`pregunta_secreta`,`respuesta_secreta`)VALUES('" + correo + "','" + nombres + "','" + apellidos + "','" + rut + "','" + password + "','" + region + "','" + comuna + "', '" + pregunta + "', '" + respuesta + "')", function (req1, resultados) {
         res.status(201).send("Usuario creado");
     });
 });

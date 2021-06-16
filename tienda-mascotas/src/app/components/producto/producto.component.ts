@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-//import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
+import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
 import{Producto}from '../../interfaces/producto';
 import { ActivatedRoute, Params } from '@angular/router';
 
@@ -9,12 +9,12 @@ import {ManejoProductosService} from '../../services/manejo-productos.service';
   templateUrl: './producto.component.html',
   styleUrls: ['./producto.component.scss']
 })
+  
 export class ProductoComponent implements OnInit {
+  cantidad:number;
   producto:Array<Producto>=[];
-    
-  constructor(/*config: NgbRatingConfig*/private servicioProducto : ManejoProductosService,private rutaActiva: ActivatedRoute) {
-    /*config.max = 5;
-    config.readonly = true;*/
+  constructor(private servicioProducto : ManejoProductosService,private rutaActiva: ActivatedRoute) {
+    this.cantidad = 1;
    }
 
   ngOnInit(): void {
@@ -25,6 +25,17 @@ export class ProductoComponent implements OnInit {
           console.log(prod[i]);
         }
       });
+  }
+
+  aumentar(){
+    this.cantidad+=1;
+    console.log(this.cantidad);
+  }
+
+  disminuir(){
+    if (this.cantidad>1){
+      this.cantidad-=1;
+    }
   }
 
 }

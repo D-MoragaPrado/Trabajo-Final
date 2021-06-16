@@ -29,9 +29,7 @@ export class CategoriasComponent implements OnInit {
           console.log(producto[i]);
         }
       });
-      console.log("nope");
     }
-    //console.log("holi",this.rutaActiva.snapshot.params.animal);
   };
 
 }

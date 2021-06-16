@@ -1,5 +1,4 @@
-import { Comuna } from "./comuna";
-import { Region } from "./region";
+
 
 export interface Usuario {
     correo      : string;
@@ -9,4 +8,6 @@ export interface Usuario {
     region      : number;
     comuna      : number;
     password    : string;
+    pregunta    : string;
+    respuesta   : string;
 }

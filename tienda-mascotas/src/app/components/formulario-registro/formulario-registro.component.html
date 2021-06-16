@@ -65,7 +65,27 @@
             <mat-icon matSuffix>vpn_key</mat-icon>
         </mat-form-field>
         </li>
-            
+
+
+        <li>
+            <mat-form-field appearance="fill" class="caja-select" >
+                <mat-label>Pregunta Secreta</mat-label>
+                <mat-select formControlName="Pregunta" >
+                  <mat-option *ngFor="let preg of preguntas" [value]="preg.pregunta">
+                    {{preg.pregunta}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </li>
+
+        <li>
+            <mat-form-field class="caja-input">
+                <mat-label>Respuesta Secreta</mat-label>
+                <input matInput  type="respuesta"  formControlName="Respuesta" >
+                <mat-icon matSuffix>vpn_key</mat-icon>
+            </mat-form-field>
+        </li>
+
         <li>
             <button class="button" type="submit" [disabled]="formulario.invalid">Registrarse</button>
         </li>

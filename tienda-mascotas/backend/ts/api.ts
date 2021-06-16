@@ -104,7 +104,9 @@ app.post('/crearUsuario', (req : any, res : any) => {
     let region = req.body.region;
     let comuna = req.body.comuna;
     let password = Md5.init(req.body.password);
-    connection.query("INSERT INTO `usuario`(`correo`, `nombres`, `apellidos`, `rut`, `password`, `region_id`, `comuna_id`)VALUES('"+correo+"','"+nombres+"','"+apellidos+"','"+rut+"','"+password+"','"+region+"','"+comuna+"')",(req1:any,resultados:any)=>{
+    let pregunta = req.body.pregunta;
+    let respuesta = Md5.init(req.body.respuesta);
+    connection.query("INSERT INTO `usuario`(`correo`, `nombres`, `apellidos`, `rut`, `password`, `region_id`, `comuna_id`,`pregunta_secreta`,`respuesta_secreta`)VALUES('"+correo+"','"+nombres+"','"+apellidos+"','"+rut+"','"+password+"','"+region+"','"+comuna+"', '"+pregunta+"', '"+respuesta+"')",(req1:any,resultados:any)=>{
         res.status(201).send("Usuario creado");
      });
 })

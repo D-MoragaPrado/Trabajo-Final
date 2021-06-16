@@ -1,5 +1,29 @@
-producto works
-<li *ngFor = "let pro of producto">
-{{pro.nombre}}
-<p><img src="{{pro.src_imagen}}" class="imagen"></p>
-</li>
+<div id="claseSuperior">
+    <span *ngFor = "let pro of producto">  
+
+        <div id="imagen">
+        <p><img src="{{pro.src_imagen}}" class="imagen"></p>
+        </div>
+        
+        <div id="info">
+            <h2>{{pro.nombre}}</h2>
+            <ng-template #t let-fill="fill">
+                <span class="star" [class.full]="fill === 100">
+                  <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+                </span>
+            </ng-template>
+              
+            <p><ngb-rating [(rate)]=pro.calificacion [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating></p>
+
+            <span class="precio"> ${{pro.precio}}</span><br>
+            {{pro.descripcion}}<br>
+            <span *ngIf="pro.stock>0"> <h4> Disponible<br></h4>
+                <button><mat-icon>pets</mat-icon>Comprar</button>
+                <button  (click)="disminuir()" class="resta">-</button>{{cantidad}}<button (click)="aumentar()" class="suma">+</button>
+                Cantidad
+            </span>
+            <span *ngIf="pro.stock==0"><h4>Producto no disponible<br></h4></span>
+
+        </div>
+    </span>
+</div>

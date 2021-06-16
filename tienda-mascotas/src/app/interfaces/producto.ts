@@ -7,5 +7,6 @@ export interface Producto {
     precio          : number;
     stock           : number;
     comentarios     : Array<string>;
-    calificacion    : any;
+    calificacion    : number;
+    descripcion     : string;
 }

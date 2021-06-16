@@ -36,6 +36,8 @@ export class IniciarSesionComponent implements OnInit {
         rut:'',
         region:0,
         comuna:0,
+        pregunta:'',
+        respuesta:''
       };
       this.servicioUsuario.iniciarSesion(usuario).subscribe(respuesta=>{
         console.log("holi  ",respuesta);

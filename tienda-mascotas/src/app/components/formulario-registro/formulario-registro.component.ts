@@ -6,6 +6,7 @@ import {ManejoUsuariosService} from '../../services/manejo-usuarios.service';
 import { Region } from '../../interfaces/region';
 import { Comuna } from '../../interfaces/comuna';
 import {Usuario} from '../../interfaces/usuario';
+import { ListadoPreguntas } from '../../interfaces/preguntas-secretas';
 
 @Component({
   selector: 'app-formulario-registro',
@@ -16,6 +17,7 @@ export class FormularioRegistroComponent implements OnInit {
   formulario:FormGroup;
   regiones : Array<Region> = [];
   comunas : Array<Comuna> = [];
+  preguntas = ListadoPreguntas;
   //exis:boolean=false;
 
   constructor(private fb:FormBuilder,private router : Router, private servicioLocalidad : LocalidadService , private servicioUsuario: ManejoUsuariosService) {
@@ -28,6 +30,8 @@ export class FormularioRegistroComponent implements OnInit {
       Correo:['',[Validators.required,Validators.email]],
       Contrasenia:['',[Validators.required,Validators.maxLength(15)]],
       Contrasenia2:['',[Validators.required,Validators.maxLength(15)]],
+      Pregunta:['',[Validators.required]],
+      Respuesta:['',[Validators.required, Validators.maxLength(32)]],
     });}
 
   ngOnInit(): void {
@@ -72,6 +76,8 @@ export class FormularioRegistroComponent implements OnInit {
               region:this.formulario.get('Region')?.value,
               comuna:this.formulario.get('Comuna')?.value,
               password:this.formulario.get('Contrasenia')?.value,
+              pregunta:this.formulario.get('Pregunta')?.value,
+              respuesta:this.formulario.get('Respuesta')?.value,
             };     
             this.servicioUsuario.RegistrarUsuario(nuevoUsuario).subscribe(usuario=>{
               console.log(usuario);

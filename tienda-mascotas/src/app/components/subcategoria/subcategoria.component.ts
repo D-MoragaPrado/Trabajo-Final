@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Producto} from '../../interfaces/producto';
 import { ActivatedRoute, Params } from '@angular/router';
-
+import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import {ManejoProductosService} from '../../services/manejo-productos.service';
+import { config } from 'rxjs';
 
 @Component({
   selector: 'app-subcategoria',
@@ -14,9 +15,12 @@ export class SubcategoriaComponent implements OnInit {
   categoria:string='';
   subcategoria:string='';
   
-  constructor(private servicioProducto : ManejoProductosService,private rutaActiva: ActivatedRoute) { }
+  constructor(private servicioProducto : ManejoProductosService,private rutaActiva: ActivatedRoute, configRating : NgbRatingConfig) { 
+    configRating.max = 5;
+  }
 
   ngOnInit(): void {
+    //window.location.reload();
     this.productos = [];
     this.categoria=this.rutaActiva.snapshot.params.animal;
     this.subcategoria=this.rutaActiva.snapshot.params.subcategoria;

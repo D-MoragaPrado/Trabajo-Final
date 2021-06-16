@@ -1,7 +1,7 @@
 <nav>
     <div id="logo">
         <ul>
-            <li><img src="./../../../assets/icon_tienda/logo_nombre.png" alt="a"></li>
+            <a [routerLink]="['/']" routerLinkActive="router-link-active"><li><img src="./../../../assets/icon_tienda/logo_nombre.png" alt="a"></li></a>
             <li>
                 <ul id="sesion">
                 <mat-icon id="logo_cuenta">account_circle</mat-icon>
@@ -35,17 +35,19 @@
         </mat-menu>
 
         <mat-menu #perros='matMenu'>
-            
-            <button class='btncat' mat-menu-item *ngFor="let subcategoria of subCategoriasPerro">
-                <a [routerLink]="['/categorias','Perro',subcategoria.nombre_categoria]" routerLinkActive="router-link-active" >
-                {{subcategoria.nombre_categoria}}</a></button>
-            
+            <span *ngFor="let subcategoria of subCategoriasPerro">
+                <a [routerLink]="['/categorias/','Perro',subcategoria.nombre_categoria]" routerLinkActive="router-link-active" >
+                    <button class='btncat' mat-menu-item >{{subcategoria.nombre_categoria}}</button>
+                </a>
+            </span>    
         </mat-menu>
 
         <mat-menu #gatos='matMenu'>
-            <button class='btncat' mat-menu-item *ngFor="let subcategoria of subCategoriasGato">
+            <span *ngFor="let subcategoria of subCategoriasGato">
                 <a [routerLink]="['/categorias','Gato',subcategoria.nombre_categoria]" routerLinkActive="router-link-active" >
-                {{subcategoria.nombre_categoria}}</a></button>
+                    <button class='btncat' mat-menu-item >{{subcategoria.nombre_categoria}}</button>
+                </a>
+            </span>
         </mat-menu>
         
     
@@ -53,9 +55,10 @@
         <button mat-button>Contacto</button>
         <a [routerLink]="['/carrito']" routerLinkActive="router-link-active" >
             <div id="carrito">
-            <button mat-button>
-                <mat-icon> local_grocery_store</mat-icon>
-                carrito</button>
+                <button mat-button>
+                    <mat-icon>local_grocery_store</mat-icon>
+                    <span>Carro</span>
+                </button>
             </div>
         </a>
     </div>
