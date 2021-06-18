@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
 import{Producto}from '../../interfaces/producto';
 import { ActivatedRoute, Params } from '@angular/router';
+import {CarroCompra,Carro}from '../../interfaces/carro-compra';
 
 import {ManejoProductosService} from '../../services/manejo-productos.service';
 @Component({
@@ -13,6 +14,7 @@ import {ManejoProductosService} from '../../services/manejo-productos.service';
 export class ProductoComponent implements OnInit {
   cantidad:number;
   producto:Array<Producto>=[];
+  carrito:Array<CarroCompra>=Carro;
   constructor(private servicioProducto : ManejoProductosService,private rutaActiva: ActivatedRoute) {
     this.cantidad = 1;
    }
@@ -29,13 +31,19 @@ export class ProductoComponent implements OnInit {
 
   aumentar(){
     this.cantidad+=1;
-    console.log(this.cantidad);
   }
 
   disminuir(){
     if (this.cantidad>1){
       this.cantidad-=1;
     }
+  }
+  comprar(){
+    console.log("inicialmente es ",this.carrito);
+    let acarrito:CarroCompra={producto:this.producto[0],
+                  cantidadProducto:this.cantidad};
+    this.carrito.push(acarrito);
+    console.log("termina como",this.carrito);
   }
 
 }

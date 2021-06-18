@@ -1,1 +1,18 @@
-<p>carrito works!</p>
+<div id="titulos">
+    <ul>
+        <li>Cantidad </li>
+        <li>Precio c/u</li>
+        <li>Imagen</li> 
+        <li>Nombre Producto</li>    
+    </ul>
+</div>
+
+
+<div id="barra" *ngFor = "let produc of carrito">
+    <ul>
+        <li><button  (click)="disminuir(produc)" class="resta">-</button>{{produc.cantidadProducto}}<button (click)="aumentar(produc)" class="suma">+</button></li>
+        <li>{{produc.producto.precio}}</li>
+        <li><img src="{{produc.producto.src_imagen}}" class="imagen"></li> 
+        <li>{{produc.producto.nombre}}</li>    
+    </ul>
+</div>

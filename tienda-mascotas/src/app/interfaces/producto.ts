@@ -1,8 +1,8 @@
 export interface Producto {
     id              : number;
     nombre          : string;
-    categoria       : string;
-    subcategoria    : string;
+    categoria_principal_id : number;
+    subcategoria_id    : number;
     src_imagen      : string;
     precio          : number;
     stock           : number;

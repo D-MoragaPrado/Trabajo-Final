@@ -1,0 +1,35 @@
+ul{
+    width:auto;
+    list-style-type: none;
+    
+}
+ul li{
+    display:inline-flex;
+    flex-direction:row;
+    margin-right: 3em;
+    vertical-align: middle;
+    
+}
+div#barra{
+    background-color: rgba(128, 128, 128, 0.411);
+    width: 60%;
+    height: 56px;
+    margin-top: 3px;
+}
+div#titulos{
+    margin-left: 3em;
+}
+
+.resta{
+    margin-left: 3em;
+    margin-right:5px;
+}
+.suma{
+    margin-left:5px;
+}
+.imagen{
+    width: 50px;
+    height: 50px;
+    margin-top:3px;
+    vertical-align: middle;
+}

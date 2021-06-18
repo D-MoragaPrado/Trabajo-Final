@@ -1,8 +1,8 @@
 import { Producto } from "./producto";
 
 export interface CarroCompra {
-    productos: Array<Producto>;
-    cantidadProductos : Array<number>;
+    producto: Producto;
+    cantidadProducto : number;
 }
 
-export let Carro : CarroCompra;
+export let Carro : Array<CarroCompra>=[];
