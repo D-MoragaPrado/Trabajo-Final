@@ -19,18 +19,19 @@ export class SubcategoriaComponent implements OnInit {
     configRating.max = 5;
   }
 
-  ngOnInit(): void {
-    //window.location.reload();
-    this.productos = [];
-    this.categoria=this.rutaActiva.snapshot.params.animal;
-    this.subcategoria=this.rutaActiva.snapshot.params.subcategoria;
-    console.log(this.categoria,this.subcategoria);
-    this.servicioProducto.getProductosSubcategoria(this.rutaActiva.snapshot.params.animal,this.rutaActiva.snapshot.params.subcategoria).subscribe((producto) => {
-      for (let i = 0; i < producto.length; i++) {
-        this.productos.push(producto[i]);
-        console.log(producto[i]);
-      }
-    });
+  ngOnInit(): void { 
+    this.rutaActiva.params.subscribe(params =>{
+      this.productos = [];
+      this.categoria=params['animal'];
+      this.subcategoria=params['subcategoria'];
+      console.log(this.categoria,this.subcategoria);
+      this.servicioProducto.getProductosSubcategoria(this.rutaActiva.snapshot.params.animal,this.rutaActiva.snapshot.params.subcategoria).subscribe((producto) => {
+        for (let i = 0; i < producto.length; i++) {
+          this.productos.push(producto[i]);
+          console.log(producto[i]);
+        }
+      });
+    })
   }
 
 }
