@@ -7,6 +7,8 @@ import {CarritoComponent} from '../app/components/carrito/carrito.component';
 import {CategoriasComponent} from '../app/components/categorias/categorias.component';
 import {ProductoComponent} from '../app/components/producto/producto.component';
 import {SubcategoriaComponent} from '../app/components/subcategoria/subcategoria.component'
+import { IngresoAdminComponent } from '../app/components/ingreso-admin/ingreso-admin.component'
+import { AdminComponent } from '../app/components/admin/admin.component'
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -16,6 +18,8 @@ const routes: Routes = [
   {path:'categorias/:animal',component:CategoriasComponent},
   {path:'producto/:id',component:ProductoComponent},
   {path:'categorias/:animal/:subcategoria',component:SubcategoriaComponent},
+  {path:'login/admin', component:IngresoAdminComponent, data:{header:false}},
+  {path:'admin/', component:AdminComponent, data:{header:false}},
 ];
 
 @NgModule({

@@ -1,1 +1,21 @@
-<p>ingreso-admin works!</p>
+<div id="contenedor">
+    <form [formGroup]="formularioInicio" (ngSubmit)="InicioSesion()" novalidate class="form">
+        <ul>
+            <li>
+                <mat-form-field>
+                    <mat-label>Nombre Administrador</mat-label>
+                    <input matInput placeholder="Roberto Isla" formControlName="Nombre">
+                    <mat-icon matSuffix>assignment_ind</mat-icon>
+                </mat-form-field>
+            </li>
+                <mat-form-field>
+                    <mat-label>Contraseña Administrador</mat-label>
+                    <input matInput type="password" formControlName="Password">
+                    <mat-icon matSuffix>vpn_key</mat-icon>
+                </mat-form-field>
+            <li id="li_button">
+                <button class="button" type="submit" [disabled]="formularioInicio.invalid">Iniciar Sesión</button>
+            </li>
+        </ul>
+    </form>
+</div>

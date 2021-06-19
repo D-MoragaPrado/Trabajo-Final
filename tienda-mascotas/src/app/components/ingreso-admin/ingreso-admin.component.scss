@@ -1,0 +1,32 @@
+#contenedor{
+    background-color: azure;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+}
+
+ul{
+    padding: 2em;
+}
+li{
+    list-style: none;
+}
+
+.form{
+    margin-top: 10em;
+    margin-left: 40%;
+    margin-right: 40%;
+    border: 5px outset #1C6EA4;
+}
+
+mat-form-field{
+    width: 100%;
+}
+
+#li_button{
+    margin-top: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
