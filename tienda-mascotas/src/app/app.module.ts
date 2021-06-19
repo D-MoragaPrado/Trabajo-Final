@@ -23,6 +23,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { SubcategoriaComponent } from './components/subcategoria/subcategoria.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
+import { IngresoAdminComponent } from './components/ingreso-admin/ingreso-admin.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
     ProductoComponent,
     CarritoComponent,
     CategoriasComponent,
-    SubcategoriaComponent
+    SubcategoriaComponent,
+    IngresoAdminComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
