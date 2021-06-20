@@ -18,7 +18,7 @@
             <span class="precio"> ${{pro.precio}}</span><br>
             {{pro.descripcion}}<br>
             <span *ngIf="pro.stock>0"> <h4> Disponible<br></h4>
-                <button (click)=comprar() class="aniadir"><mat-icon>pets</mat-icon>Añadir al Carro</button>
+                <button (click)=aniadirCarrito() class="aniadir"><mat-icon>pets</mat-icon>Añadir al Carro</button>
                 <button  (click)="disminuir()" class="resta">-</button>{{cantidad}}<button (click)="aumentar()" class="suma">+</button>
                 Cantidad
             </span>

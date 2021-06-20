@@ -114,7 +114,6 @@ app.post('/crearUsuario', (req : any, res : any) => {
 app.post('/iniciar-sesion', (req : any, res : any) => {
     let correo=req.body.correo;
     let password = Md5.init(req.body.password);
-    console.log(password);
     connection.query('SELECT * FROM `usuario` WHERE correo=? AND password=?',[correo,password], (reqSQL : any, resSQL : any) => {
         if(resSQL == ''){
             console.log("no existe");
@@ -125,7 +124,44 @@ app.post('/iniciar-sesion', (req : any, res : any) => {
             res.send(true);
         }
     })
-})   
+}) 
+app.get('/obtener-pregunta/:correo', (req : any , res : any) => {
+    let correo = req.params.correo
+    connection.query('SELECT pregunta_secreta FROM `usuario` WHERE correo=?', correo, (reqSQL : any, resSQL : any) => {
+        /*if(resSQL == ''){
+            res.send(false);
+        }
+        else{*/
+            res.status(200).send(resSQL);
+        //}
+    })
+})
+app.get('/obtener-usuario/:correo/:respuesta', (req : any , res : any) => {
+    let correo = req.params.correo;
+    let respuesta = Md5.init(req.params.respuesta);
+    connection.query('SELECT * FROM `usuario` WHERE correo=? AND respuesta_secreta=?', [correo,respuesta], (reqSQL : any, resSQL : any) => {
+        /*if(resSQL == ''){
+            res.send(false);
+        }
+        else{*/
+            res.status(200).send(resSQL);
+        //}
+    })
+})
+
+app.put('/cambiar-clave', (req : any, res : any) => {
+    let correo = req.body.correo;
+    let password = Md5.init(req.body.password);
+    connection.query('UPDATE `usuario` SET password=? WHERE correo=?', [password,correo], (reqSQL : any, resSQL : any) => {
+        /*if(resSQL == ''){
+            res.send(false);
+        }
+        else{*/
+            res.status(200).send(resSQL);
+        //}
+    })
+
+})
 // Checkeo de correo existente en bd
 
 app.get('/formulario-registro/:correo', (req : any , res : any) => {

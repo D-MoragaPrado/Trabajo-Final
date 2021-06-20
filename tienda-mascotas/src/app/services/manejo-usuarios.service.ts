@@ -24,4 +24,13 @@ export class ManejoUsuariosService {
   iniciarSesion(usuario:Usuario):Observable<any>{
     return this.servicio.post(`${this.url}/iniciar-sesion`,usuario);
   }
+  getPregunta(correo :string):Observable<any>{
+    return this.servicio.get(`${this.url}/obtener-pregunta/${correo}`);
+  }
+  getUsuarioPregunta(correo:string,respuesta:string):Observable<any>{
+    return this.servicio.get(`${this.url}/obtener-usuario/${correo}/${respuesta}`);
+  }
+  cambiarClave(usuario:Usuario):Observable<any>{
+    return this.servicio.put(`${this.url}/cambiar-clave`,usuario);
+  }
 }

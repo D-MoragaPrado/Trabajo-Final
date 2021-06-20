@@ -25,6 +25,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { IngresoAdminComponent } from './components/ingreso-admin/ingreso-admin.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { RecuperarClaveComponent } from './components/recuperar-clave/recuperar-clave.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { AdminComponent } from './components/admin/admin.component';
     CategoriasComponent,
     SubcategoriaComponent,
     IngresoAdminComponent,
-    AdminComponent
+    AdminComponent,
+    RecuperarClaveComponent
   ],
   imports: [
     BrowserModule,

@@ -94,7 +94,6 @@ app.post('/crearUsuario', function (req, res) {
 app.post('/iniciar-sesion', function (req, res) {
     var correo = req.body.correo;
     var password = md5_typescript_1.Md5.init(req.body.password);
-    console.log(password);
     connection.query('SELECT * FROM `usuario` WHERE correo=? AND password=?', [correo, password], function (reqSQL, resSQL) {
         if (resSQL == '') {
             console.log("no existe");
@@ -104,6 +103,41 @@ app.post('/iniciar-sesion', function (req, res) {
             console.log("Existee");
             res.send(true);
         }
+    });
+});
+app.get('/obtener-pregunta/:correo', function (req, res) {
+    var correo = req.params.correo;
+    connection.query('SELECT pregunta_secreta FROM `usuario` WHERE correo=?', correo, function (reqSQL, resSQL) {
+        /*if(resSQL == ''){
+            res.send(false);
+        }
+        else{*/
+        res.status(200).send(resSQL);
+        //}
+    });
+});
+app.get('/obtener-usuario/:correo/:respuesta', function (req, res) {
+    var correo = req.params.correo;
+    var respuesta = md5_typescript_1.Md5.init(req.params.respuesta);
+    connection.query('SELECT * FROM `usuario` WHERE correo=? AND respuesta_secreta=?', [correo, respuesta], function (reqSQL, resSQL) {
+        /*if(resSQL == ''){
+            res.send(false);
+        }
+        else{*/
+        res.status(200).send(resSQL);
+        //}
+    });
+});
+app.put('/cambiar-clave', function (req, res) {
+    var correo = req.body.correo;
+    var password = md5_typescript_1.Md5.init(req.body.password);
+    connection.query('UPDATE `usuario` SET password=? WHERE correo=?', [password, correo], function (reqSQL, resSQL) {
+        /*if(resSQL == ''){
+            res.send(false);
+        }
+        else{*/
+        res.status(200).send(resSQL);
+        //}
     });
 });
 // Checkeo de correo existente en bd

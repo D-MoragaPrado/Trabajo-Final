@@ -30,7 +30,10 @@ export class ProductoComponent implements OnInit {
   }
 
   aumentar(){
-    this.cantidad+=1;
+    if(this.cantidad<this.producto[0].stock){
+      this.cantidad+=1;
+    }
+    
   }
 
   disminuir(){
@@ -38,12 +41,22 @@ export class ProductoComponent implements OnInit {
       this.cantidad-=1;
     }
   }
-  comprar(){
-    console.log("inicialmente es ",this.carrito);
+  aniadirCarrito(){
+    let noexiste:boolean=true;
     let acarrito:CarroCompra={producto:this.producto[0],
-                  cantidadProducto:this.cantidad};
-    this.carrito.push(acarrito);
-    console.log("termina como",this.carrito);
+      cantidadProducto:this.cantidad};
+    
+    for(let i=0;i<this.carrito.length;i++){
+      if(this.carrito[i].producto==this.producto[0]){
+        this.carrito[i].cantidadProducto+=this.cantidad;
+        console.log("ya existe");
+        noexiste=false;
+      }
+    }
+    if(noexiste){   
+      console.log("añadido");
+      this.carrito.push(acarrito);
+    }
   }
 
 }

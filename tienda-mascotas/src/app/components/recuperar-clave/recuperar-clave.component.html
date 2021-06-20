@@ -1,0 +1,50 @@
+<form [formGroup]="formularioR" (ngSubmit)="ModificarContrasenia()" novalidate class="clase-form">
+    <ul>
+        <ng-container *ngIf="show1">
+            <li>
+                <mat-form-field class="caja-input">
+                    <mat-label>Correo Electrónico</mat-label>
+                    <input matInput  type="email" placeholder="example@correo.com" formControlName="Correo" >
+                    <mat-icon matSuffix>alternate_email</mat-icon>
+                </mat-form-field>
+            </li>
+            <li>
+                <button class="button" (click)=EnviarCorreo()>Recuperar</button>
+            </li>
+        </ng-container>
+        <ng-container *ngIf="show2" >
+            <li><h3>{{pregunta}}</h3></li>
+            <li>
+                <mat-form-field class="caja-input">
+                    <mat-label>Respuesta</mat-label>
+                    <input matInput   formControlName="Respuesta" >
+                    <mat-icon matSuffix>mode_edit</mat-icon>
+                </mat-form-field>
+            </li>
+            <li>
+                <button class="button" (click)=EnviarRespuesta()>Recuperar</button>
+            </li>
+            
+        </ng-container>
+
+        <ng-container *ngIf="show3" >
+            <li>
+                <mat-form-field class="caja-input">
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput  type="password"  formControlName="Contrasenia" >
+                    <mat-icon matSuffix>vpn_key</mat-icon>
+                </mat-form-field>
+                </li>
+                <li>
+                <mat-form-field class="caja-input">
+                    <mat-label>Confirmar Contraseña</mat-label>
+                    <input matInput  type="password"  formControlName="Contrasenia2" >
+                    <mat-icon matSuffix>vpn_key</mat-icon>
+                </mat-form-field>
+                </li>
+            <li>
+                <button class="button" type="submit" [disabled]="formularioR.invalid">Cambiar</button>
+            </li>
+        </ng-container>
+    </ul>
+</form>
