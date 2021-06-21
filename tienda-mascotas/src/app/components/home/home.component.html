@@ -1,3 +1,28 @@
+<ngb-carousel >
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <a [routerLink]="['/categorias/Gato']" routerLinkActive="router-link-active" >
+            <img src="./../../../assets/espacio-gatuno.jpg" alt="Random first slide">
+        </a>
+      </div>
+      <div class="carousel-caption">
+        <h3>Espacio Gatuno</h3>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <a [routerLink]="['/categorias/Perro']" routerLinkActive="router-link-active" >
+            <img src="./../../../assets/espacio-perruno.jpg" alt="Random second slide">
+        </a>
+      </div>
+      <div class="carousel-caption">
+        <h3>Espacio Perruno</h3>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+
+
+
 <div id="sellos_calidad">
     <ul>
         <li>
