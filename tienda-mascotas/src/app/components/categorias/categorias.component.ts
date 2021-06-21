@@ -11,7 +11,7 @@ import {ManejoProductosService} from '../../services/manejo-productos.service';
 })
 export class CategoriasComponent implements OnInit {
   productos : Array<Producto> = [];
-
+  task="warn";
   constructor(private servicioProducto : ManejoProductosService,private rutaActiva: ActivatedRoute) { }
   
   ngOnInit(): void {

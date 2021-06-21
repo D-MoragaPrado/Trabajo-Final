@@ -1,18 +1,30 @@
-<div id="titulos">
-    <ul>
-        <li>Cantidad </li>
-        <li>Precio c/u</li>
-        <li>Imagen</li> 
-        <li>Nombre Producto</li>    
-    </ul>
+<div id="cajaTabla">
+    <table class="default">
+        <tr>
+            <th>Cantidad </th>
+            <th>Precio c/u</th>
+            <th>Imagen</th> 
+            <th>Nombre Producto</th>
+            <th>Eliminar</th>    
+        </tr>
+
+        <tr *ngFor = "let produc of carrito" >
+            <td><button  (click)="disminuir(produc)" class="resta">-</button>{{produc.cantidadProducto}}<button (click)="aumentar(produc)" class="suma">+</button></td>
+            <td >{{produc.producto.precio}}</td>
+            <td><img src="{{produc.producto.src_imagen}}" class="imagen"></td> 
+            <td>{{produc.producto.nombre}}</td>
+            <td><button (click)=eliminar(produc)><mat-icon class="Eliminar">delete</mat-icon></button></td>    
+        </tr>
+    </table>
 </div>
 
-
-<div id="barra" *ngFor = "let produc of carrito">
-    <ul>
-        <li><button  (click)="disminuir(produc)" class="resta">-</button>{{produc.cantidadProducto}}<button (click)="aumentar(produc)" class="suma">+</button></li>
-        <li>{{produc.producto.precio}}</li>
-        <li><img src="{{produc.producto.src_imagen}}" class="imagen"></li> 
-        <li>{{produc.producto.nombre}}</li>    
-    </ul>
+<div id="comprar">
+    <div class="center">
+        <ul>
+            <li><h2>Total</h2> </li>
+            <li class="precio">${{total}}</li>
+            <li >{{cantidad}} productos</li>
+            <li><button (click)="comprar()" class="btnComprar">Comprar</button></li>
+        </ul>
+    </div>
 </div>

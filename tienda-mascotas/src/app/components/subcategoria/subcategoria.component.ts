@@ -14,7 +14,7 @@ export class SubcategoriaComponent implements OnInit {
   productos : Array<Producto> = [];
   categoria:string='';
   subcategoria:string='';
-  
+  task="warn";
   constructor(private servicioProducto : ManejoProductosService,private rutaActiva: ActivatedRoute, configRating : NgbRatingConfig) { 
     configRating.max = 5;
   }

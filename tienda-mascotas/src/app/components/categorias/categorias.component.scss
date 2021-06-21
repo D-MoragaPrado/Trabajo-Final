@@ -1,6 +1,8 @@
 .imagen{
-    width: 200px;
-    height: 200px;
+    width: 290px;
+    padding-left:2px;
+    padding-top:2px;
+    height: 280px;  
 }
 ul{
     width:auto;
@@ -10,35 +12,63 @@ ul li{
     display:inline-flex;
     flex-direction:row;
 }
-
+.ulfiltro li{
+    display:list-item;
+    flex-direction:column;
+}
 
 .btnGigante{
+    padding: 0%;
     margin: 1em;
-    width: 300px;
+    border:0px;
+    width: 295px;
     position: relative;
     display:inline-flex;
-    background-color: #f01a52;
     text-decoration: none;
+    border-radius: 20px;
 }
 div#contenedorProducto{
-    width: 84%;
-    background-color: green;
+    width: 83%;
     display:inline-flex;
     flex-direction: row;
+}
 
-}
 div#contenedorFiltros{
-    width: 15%;
+    width: 16%;
     display:inline-flex;
     flex-direction: row;
-    background-color: hotpink;
+    background-color: rgba(212, 211, 212, 0.26);
+    border: 2px solid rgb(80, 78, 78);
+    border-radius: 20px;
+    vertical-align: top;
 }
+
+.inputN{
+    width: 60px;
+    text-align: center;
+    border-radius: 20px;
+}
+h3{
+    margin-bottom: 0px;
+}
+
+
 .card{
-    background-color: #c72852b7;
+    background-color: #c728528c;
     height: fit-content;
     width: 100%;
     float: none;
     text-align: left;
+    border-radius: 20px;
+    height: 425px;
+    vertical-align: middle;   
+     
+}
+
+mat-card-content{
+    position:absolute;
+    bottom: 10px;
+    margin-left:15px;
 }
 
 a{
@@ -48,16 +78,16 @@ a{
 .star{
     position: relative;
     display: inline-block;
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: #d3d3d3;
     margin: 1px;
 }
 .full {
-    color: red;
-  }
-  .half {
+    color: #911b3a;
+}
+.half {
     position: absolute;
     display: inline-block;
     overflow: hidden;
-    color: red;
-  }
+    color: #911b3a;
+}

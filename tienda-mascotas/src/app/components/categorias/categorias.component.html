@@ -1,30 +1,39 @@
-<p>categorias works!</p>
 <div id="contenedorFiltros">
-    aqui para filtrar wey<br><br>
-    bla  <br>
-    bla <br>
-    bla <br>
+    <ul class="ulfiltro">
+        aqui para filtrar wey<br><br>      
+        <li>
+            Rango de Precios<br>
+            <input type="number" placeholder="min" class="inputN"> - <input type="number" placeholder="max" class="inputN"> 
+        </li>       
+        <li>
+            Disponibilidad<br>
+            <mat-checkbox class="disponibilidad" [color]=task >Disponible</mat-checkbox>
+            <mat-checkbox class="disponibilidad" [color]=task >No Disponible</mat-checkbox>
+        </li>
+        <li><button>Filtrar</button></li>
+    </ul>   
 </div>
+
 <div id="contenedorProducto">
     <ul>
         <li *ngFor = "let producto of productos">
             <a [routerLink]="['/producto',producto.id]" routerLinkActive="router-link-active" >
             <button class="btnGigante">
                 <mat-card class="card">
-                    <img mat-card-image src="{{producto.src_imagen}}">
+                    <img mat-card-image src="{{producto.src_imagen}}" class="imagen">
                     <mat-card-header>
                         <mat-card-title class="card-titulo">{{producto.nombre}}</mat-card-title>
+                        <mat-card-subtitle>Por PetShop</mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-content>
-                        <p>Por PetShop</p>
-                        ${{producto.precio}} CLP
+                        <h3>${{producto.precio}} CLP</h3>
                         <ng-template #t let-fill="fill">
                             <span class="star" [class.full]="fill==100">
                                 <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
                             </span>
                         </ng-template>
                         <p><ngb-rating [(rate)]=producto.calificacion [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating></p>
-                        <pre>Rate: <b>{{producto.calificacion}}</b></pre>
+                        <!--<pre>Rate: <b>{{producto.calificacion}}</b></pre>-->
                     </mat-card-content>
                   </mat-card>
             </button>

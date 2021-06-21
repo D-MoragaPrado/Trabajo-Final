@@ -1,35 +1,77 @@
-ul{
-    width:auto;
-    list-style-type: none;
+
+table th{
+    padding-right: 30px;
+    
+    margin-top: 100px;
+    text-align: left;
+}
+table td{
+    padding-left: auto;
+    background-color:rgba(128, 128, 128, 0.411);
+    text-align: center;
     
 }
-ul li{
+div#cajaTabla{
+    margin-left: 1em;
     display:inline-flex;
     flex-direction:row;
-    margin-right: 3em;
-    vertical-align: middle;
-    
+    vertical-align: top;
 }
-div#barra{
-    background-color: rgba(128, 128, 128, 0.411);
-    width: 44em;
-    height: 56px;
-    margin-top: 3px;
-}
-div#titulos{
+div#comprar{
     margin-left: 3em;
+    width: 250px;
+    height: 250px;
+    display:inline-flex;
+    flex-direction:row;
+    border:2px outset #f01a52;
+    border-radius: 50px;
+    margin-bottom: 2em;
 }
 
-.resta{
-    margin-left: 3em;
+ul{
+    text-align: center;
+    margin-right: 3em;
+    margin-top: 3em;
+    list-style-type: none;   
+}
+
+h2{
+    font: oblique 25px serif;
+}
+
+.resta{  
     margin-right:5px;
 }
 .suma{
     margin-left:5px;
+}
+
+.eliminar{
+    width: 5px;
+    height: 5px;
 }
 .imagen{
     width: 50px;
     height: 50px;
     margin-top:3px;
     vertical-align: middle;
+}
+.center{  
+    width: 100%;
+    
+}
+
+.precio{
+    color: #911b3a;
+    font-size: 20px;
+    margin-top:10px;
+    padding-bottom:10px;
+}
+.btnComprar{
+    font: oblique 18px cursive;
+    border-radius:20px;
+    background-color: #e93565;
+    color:white;
+    box-shadow: 2px 2px 2px 1px rgb(4, 38, 43); 
+    margin-top:2em;
 }
