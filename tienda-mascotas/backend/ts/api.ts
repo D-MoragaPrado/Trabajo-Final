@@ -80,7 +80,7 @@ app.get('/subcategorias/:cat/:subcat', (req : any, res : any) => {
     console.log(categoria,subCategoria,"1");
     connection.query('SELECT * FROM producto WHERE (categoria_principal_id=(SELECT categoria_id FROM categorias WHERE nombre_categoria=?) AND subcategoria_id=(SELECT categoria_id FROM categorias WHERE nombre_categoria=?))',[categoria,subCategoria], (reqSQL : any, resSQL : any) => {
 		if(resSQL == ''){
-            console.log('Products no existente');
+            console.log('Product0 no existente');
             res.status(404);
             
         }
@@ -91,8 +91,20 @@ app.get('/subcategorias/:cat/:subcat', (req : any, res : any) => {
 	})
 
 })
-
-
+app.get('/comentarios/:idproducto', (req : any, res : any) => {
+    let id_producto= req.params.idproducto;
+    connection.query('SELECT * FROM comentarios WHERE id_producto=?',id_producto, (reqSQL : any, resSQL : any) => {
+		if(resSQL == ''){
+            console.log('Product0 no existente');
+            res.status(404);
+            
+        }
+        else{
+            console.log(resSQL);
+            res.status(200).send(resSQL);    
+        } 
+	})
+})
 //END CRUD Productos
 
 

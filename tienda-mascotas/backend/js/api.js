@@ -68,7 +68,20 @@ app.get('/subcategorias/:cat/:subcat', function (req, res) {
     console.log(categoria, subCategoria, "1");
     connection.query('SELECT * FROM producto WHERE (categoria_principal_id=(SELECT categoria_id FROM categorias WHERE nombre_categoria=?) AND subcategoria_id=(SELECT categoria_id FROM categorias WHERE nombre_categoria=?))', [categoria, subCategoria], function (reqSQL, resSQL) {
         if (resSQL == '') {
-            console.log('Products no existente');
+            console.log('Product0 no existente');
+            res.status(404);
+        }
+        else {
+            console.log(resSQL);
+            res.status(200).send(resSQL);
+        }
+    });
+});
+app.get('/comentarios/:idproducto', function (req, res) {
+    var id_producto = req.params.idproducto;
+    connection.query('SELECT * FROM comentarios WHERE id_producto=?', id_producto, function (reqSQL, resSQL) {
+        if (resSQL == '') {
+            console.log('Product0 no existente');
             res.status(404);
         }
         else {

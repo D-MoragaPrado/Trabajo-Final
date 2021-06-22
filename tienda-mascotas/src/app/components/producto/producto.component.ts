@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
-import{Producto}from '../../interfaces/producto';
 import { ActivatedRoute, Params } from '@angular/router';
+import {Form, FormBuilder,FormGroup, Validators} from '@angular/forms';
+import{Producto}from '../../interfaces/producto';
 import {CarroCompra,Carro}from '../../interfaces/carro-compra';
+import {Comentario} from '../../interfaces/comentario'
 import {Usuario} from '../../interfaces/usuario';
 import {ManejoUsuariosService} from '../../services/manejo-usuarios.service';
 
@@ -17,12 +19,19 @@ export class ProductoComponent implements OnInit {
   cantidad:number;
   producto:Array<Producto>=[];
   carrito:Array<CarroCompra>=Carro;
+  comentarios:Array<Comentario>=[];
+  formComment:FormGroup;
   public show:boolean = false;
   user:Array<Usuario>=[];
 
-  constructor(private servicioProducto : ManejoProductosService,private rutaActiva: ActivatedRoute,private servicioUsuario: ManejoUsuariosService ) {
+  constructor(private servicioProducto : ManejoProductosService,private rutaActiva: ActivatedRoute,private servicioUsuario: ManejoUsuariosService,private fb:FormBuilder ) {
     this.cantidad = 1;
-   }
+    this.formComment=this.fb.group({
+      Comentario:['',[Validators.required,Validators.maxLength(150),Validators.minLength(2)]],
+      //Rating:[''],
+  })
+
+  }
 
   ngOnInit(): void {
     console.log("holi",this.rutaActiva.snapshot.params.id);
@@ -32,6 +41,14 @@ export class ProductoComponent implements OnInit {
           console.log(prod[i]);
         }
       });
+      this.servicioProducto.getComentarios(this.rutaActiva.snapshot.params.id).subscribe((comentario) => {
+        for (let i = 0; i < comentario.length; i++) {
+          this.comentarios.push(comentario[i]);
+          console.log(comentario[i]);
+        }
+      });
+
+
       this.servicioUsuario.getUsuarioActivo().subscribe((usuario) => {
         console.log("cargando usuario activo");
         if(usuario!= null){
@@ -71,6 +88,10 @@ export class ProductoComponent implements OnInit {
       console.log("añadido");
       this.carrito.push(acarrito);
     }
+  }
+
+  AgregarComentario(){
+
   }
 
 }

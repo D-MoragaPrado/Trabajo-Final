@@ -2,6 +2,12 @@ div{
     display: inline-block;   
     flex-direction:row;  
 }
+ul{
+    list-style-type: none;
+}
+textarea{
+    width: 60%;
+}
 
 .imagen{
     //width: 300px;
@@ -34,11 +40,16 @@ div#info{
 h2{
     font: oblique 30px serif;
 }
+h3{
+    font: oblique 20px serif;
+    padding-left:2em;
+}
 h4{
     margin-top: 10px;
     font-size: 12px;
     font-weight: bolder
 }
+
 .precio{
     color: #911b3a;
     font-size: 20px;
@@ -54,6 +65,13 @@ span{
     position: relative;
     display: inline-block;
     font-size: 2rem;
+    color: #d3d3d3;
+    
+}
+.star2{
+    position: relative;
+    display: inline-block;
+    font-size: 1rem;
     color: #d3d3d3;
     
 }

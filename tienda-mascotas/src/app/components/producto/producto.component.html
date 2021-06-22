@@ -27,10 +27,33 @@
         </div>
     </span>
 </div>
+<hr>
+
+<h3>Comentarios({{comentarios.length}})</h3>
 <ng-container *ngIf="show">
-    <ul>  
-        <li><textarea name="coment" id="coment" cols="90" rows="3" placeholder="comentarios"></textarea></li>
-        <li>lista de comentarios</li>
-        <li>comentarios Aqui</li>
+    <ul><li>Usuario: {{user[0].nombres}}</li>
+        <form [formGroup]="formComment" (ngSubmit)="AgregarComentario()" novalidate class="clase-form">
+            <li><textarea name="coment" id="coment" rows="3" placeholder="comentarios"></textarea></li>
+            <li>valoracion</li>
+            <li>
+                <button class="btnComentar" type="submit" [disabled]="formComment.invalid">Comentar</button>
+            </li>
+        </form>
     </ul>
 </ng-container>
+
+<ul *ngFor = "let comentario of comentarios">
+    <li>
+        {{comentario.nombre_usuario}}
+        <ng-container *ngIf="comentario.rating!=null">
+            <ng-template #t let-fill="fill">
+                <span class="star2" [class.full]="fill === 100">
+                <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+                </span>
+            </ng-template>
+            
+            <p><ngb-rating [(rate)]=comentario.rating [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating></p>
+        </ng-container>
+    </li>
+    <li>{{comentario.comment}}</li>
+</ul>

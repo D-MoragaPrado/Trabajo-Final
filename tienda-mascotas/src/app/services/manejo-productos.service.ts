@@ -30,4 +30,7 @@ export class ManejoProductosService {
   getProductosSubcategoria(name_cat:string, name_subcat:string):Observable<any>{
     return this.servicio.get(`${this.url}/subcategorias/${name_cat}/${name_subcat}`);
   }
+  getComentarios(id_producto:number):Observable<any>{
+    return this.servicio.get(`${this.url}/comentarios/${id_producto}`);
+  }
 }
