@@ -12,9 +12,27 @@ ul li{
     display:inline-flex;
     flex-direction:row;
 }
+
+label{
+    font-size: 20px;
+}
+input[type = "radio"]{ display:none;}
+.clasificacion{
+    direction: rtl;/* right to left */
+    unicode-bidi: bidi-override;/* bidi de bidireccional */
+}
+label:hover,
+label:hover ~ label {
+  color: #f01a52;
+}
+
+input[type="radio"]:checked ~ label {
+  color: #f01a52;
+}
 .ulfiltro li{
     display:list-item;
     flex-direction:column;
+    margin-bottom: 1em;
 }
 
 .btnGigante{

@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Comentario } from '../interfaces/comentario';
 import { Producto } from '../interfaces/producto';
-
+import { CarroCompra,Carro} from '../interfaces/carro-compra';
 @Injectable({
   providedIn: 'root'
 })
@@ -41,5 +41,8 @@ export class ManejoProductosService {
   cambiarValoracion(producto:Producto):Observable<any>{
     console.log(producto.calificacion);
     return this.servicio.put(`${this.url}/cambiar-valoracion`,producto);
+  }
+  RealizarCompra():Observable<any>{
+    return this.servicio.post(`${this.url}/realizar-compra`,Carro);
   }
 }

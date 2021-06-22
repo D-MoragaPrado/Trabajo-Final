@@ -1,3 +1,24 @@
 <div id="contenedor">
-    
+    <div id="adminInfo">
+        <mat-card class="card">
+            <mat-card-header>
+                <div mat-card-avatar id="icono">
+                    <mat-icon>badge</mat-icon>
+                </div>
+              
+                <mat-card-title> {{admin[0].nombre_admin}} </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <h3>Correo Electronico: {{admin[0].correo_electronico_admin}}</h3>
+                <h3>Numero de Contacto: {{admin[0].contacto_admin}}</h3>
+            </mat-card-content>
+            <mat-card-actions>
+                <button (click)="cerrarSesion()" class="btnClose">Cerrar Sesion</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+    <mat-grid-list cols="2" rowHeight="2:1">
+        <mat-grid-tile>PotoPotoPotoPotoPotoPotoPoto</mat-grid-tile>
+        <mat-grid-tile>2</mat-grid-tile>
+    </mat-grid-list>
 </div>

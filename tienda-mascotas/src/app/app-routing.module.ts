@@ -20,7 +20,7 @@ const routes: Routes = [
   {path:'producto/:id',component:ProductoComponent},
   {path:'categorias/:animal/:subcategoria',component:SubcategoriaComponent},
   {path:'login/admin', component:IngresoAdminComponent, data:{header:false}},
-  {path:'admin/', component:AdminComponent, data:{header:false}},
+  {path:'admin', component:AdminComponent, data:{header:false}},
   {path:'recuperar-clave',component:RecuperarClaveComponent},
 ];
 

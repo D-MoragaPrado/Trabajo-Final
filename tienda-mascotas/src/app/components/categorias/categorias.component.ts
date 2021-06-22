@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Producto} from '../../interfaces/producto';
 import { ActivatedRoute, Params } from '@angular/router';
+import {Form, FormBuilder,FormGroup, Validators} from '@angular/forms';
 
 import {ManejoProductosService} from '../../services/manejo-productos.service';
 
@@ -12,7 +13,15 @@ import {ManejoProductosService} from '../../services/manejo-productos.service';
 export class CategoriasComponent implements OnInit {
   productos : Array<Producto> = [];
   task="warn";
-  constructor(private servicioProducto : ManejoProductosService,private rutaActiva: ActivatedRoute) { }
+  formFiltro:FormGroup;
+  constructor(private servicioProducto : ManejoProductosService,private rutaActiva: ActivatedRoute,private fb:FormBuilder) {
+    this.formFiltro=this.fb.group({
+      min:[''],
+      max:[''],
+      Rating1:[''],
+      Rating2:[''],
+    })
+   }
   
   ngOnInit(): void {
     if(this.rutaActiva.snapshot.params.animal=="Perro"){

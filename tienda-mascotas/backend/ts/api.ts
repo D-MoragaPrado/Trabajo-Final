@@ -6,7 +6,7 @@ const cors = require('cors')
 const mysql = require('mysql')
 let sesionI:boolean=false
 let usuarioSesion:any;
-
+let usuarioAdmin : any;
 
 app.use(bodyParser.urlencoded({
     extended : false
@@ -131,7 +131,32 @@ app.put('/cambiar-valoracion', (req : any, res : any) => {
     })
 
 })
-   
+
+app.post('/realizar-compra', (req : any, res : any) => {
+    console.log(req.body);
+    let total_compra=0;
+    let comprador=usuarioSesion[0].correo;
+    let fecha="";
+    let id;
+    for(let i=0;i<req.body.length;i++){
+        total_compra+=req.body[i].producto.precio*req.body[i].cantidadProducto;
+    }
+    connection.query("INSERT INTO `pedidos`( `comprador`, `fecha_compra`, `total_compra`)VALUES('"+comprador+"','"+fecha+"','"+total_compra+"')",(req1:any,resultados:any)=>{
+        res.send("Pedido ingresado");
+    });
+    connection.query("SELECT MAX(id_pedido) AS id FROM pedidos",(req1:any,resultados:any)=>{
+        for(let i=0;i<req.body.length;i++){
+            connection.query("INSERT INTO `compras`( `id_pedido`, `id_producto`, `cantidad_producto`)VALUES('"+resultados[0].id+"','"+req.body[i].producto.id+"','"+req.body[i].cantidadProducto+"')",(req2:any,res2:any)=>{
+                res.status(200);
+            });
+            connection.query('UPDATE `producto` SET stock=(stock-?) WHERE id=?', [req.body[i].cantidadProducto,req.body[i].producto.id], (reqSQL : any, resSQL : any) => {
+                console.log("stock actualizado")
+            })
+        }
+    });
+    
+
+})  
 //END CRUD Productos
 
 
@@ -229,6 +254,35 @@ app.get('/formulario-registro/:correo', (req : any , res : any) => {
 })
 
 //END CRUD Usuarios
+
+//!!CRUD Usuarios Admin
+
+app.post('/login/admin', (req : any, res : any) => {
+    let nombreAdmin = req.body.nombres_admin;
+    let passAdmin = Md5.init(req.body.pass_admin);
+    connection.query('SELECT * FROM `usuario_admin` WHERE nombre_admin=? AND pass_admin=?', [nombreAdmin, passAdmin], (reqSQL : any, resSQL : any) => {
+        if(resSQL == ''){
+            console.log("Nombre Administrador inexistente o incorrecto");
+            res.send(false);
+        }
+        else{
+            usuarioAdmin = resSQL;
+            console.log("Usuario Administrador ingresado", usuarioAdmin)
+            res.send(true);
+        }
+    })
+})
+
+app.get('/obtener-administrador-activo', (req : any, res : any) => {
+    console.log("Administrador activo es: ", usuarioAdmin);
+    res.status(200).send(usuarioAdmin);
+})
+
+app.get('/cerrar-sesion-admin', (req : any, res : any) => {
+    usuarioAdmin = null;
+    res.status(200).send("Sesión Administrador Cerrada");
+})
+//END CRUD Usuarios Admin
 
 //!!CRUD Regiones
 

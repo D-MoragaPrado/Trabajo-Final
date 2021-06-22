@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import{Producto}from '../../interfaces/producto';
 import {CarroCompra,Carro}from '../../interfaces/carro-compra'
 import { ProductoComponent } from '../producto/producto.component';
+import {ManejoProductosService} from '../../services/manejo-productos.service';
+import {Usuario} from '../../interfaces/usuario';
+import {ManejoUsuariosService} from '../../services/manejo-usuarios.service';
 
 @Component({
   selector: 'app-carrito',
@@ -12,9 +15,10 @@ export class CarritoComponent implements OnInit {
   carrito:Array<CarroCompra>=[];
   cantidad:number;
   total:number;
+  user:Array<Usuario>=[];
+  show:boolean = false;
 
-
-  constructor() { 
+  constructor(private servicioProducto : ManejoProductosService,private servicioUsuario: ManejoUsuariosService) { 
     this.cantidad = 0;
     this.carrito=Carro;
     this.total=0;
@@ -27,7 +31,16 @@ export class CarritoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.carrito.length);  
+    console.log(this.carrito.length);
+    this.servicioUsuario.getUsuarioActivo().subscribe((usuario) => {
+      console.log("cargando usuario activo");
+      if(usuario!= null){
+        this.show=true;
+        this.user.push(usuario[0]);
+      }else{
+        this.show=false;
+      }
+    });  
   }
   
   aumentar(produc:CarroCompra){
@@ -57,6 +70,8 @@ export class CarritoComponent implements OnInit {
   }
 
   comprar(){
-
+    this.servicioProducto.RealizarCompra().subscribe((prod) => {
+      console.log(prod);
+    });
   }
 }

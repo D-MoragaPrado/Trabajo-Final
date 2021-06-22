@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Admin } from 'src/app/interfaces/admin';
+import { ManejoAdminService } from 'src/app/services/manejo-admin.service';
 
 @Component({
   selector: 'app-ingreso-admin',
@@ -9,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class IngresoAdminComponent implements OnInit {
   formularioInicio : FormGroup;
-  constructor(private fb : FormBuilder, private router : Router) {
+  constructor(private fb : FormBuilder, private router : Router, private servicioAdmin : ManejoAdminService) {
     this.formularioInicio = this.fb.group(
       {
         Nombre:['',[Validators.required]],
@@ -23,7 +25,23 @@ export class IngresoAdminComponent implements OnInit {
 
   InicioSesion(){
     if(this.formularioInicio.valid){
-      
+      let admin : Admin={
+        nombre_admin: this.formularioInicio.get('Nombre')?.value,
+        pass_admin: this.formularioInicio.get('Password')?.value,
+        correo_electronico_admin: '',
+        contacto_admin:''
+      }
+      this.servicioAdmin.inicioAdmin(admin).subscribe((res) => {
+        console.log(res)
+        if(res){
+          this.router.navigateByUrl('/admin');
+        }
+        else{
+          alert("Administrador incorrecto!")
+        }
+      })
+    }else{
+      alert("¡Hay campos por rellenar!")
     }
   }
 }

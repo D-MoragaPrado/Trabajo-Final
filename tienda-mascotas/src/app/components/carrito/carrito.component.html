@@ -18,13 +18,19 @@
     </table>
 </div>
 
-<div id="comprar">
+<div id="comprar" >
     <div class="center">
         <ul>
             <li><h2>Total</h2> </li>
             <li class="precio">${{total}}</li>
             <li >{{cantidad}} productos</li>
-            <li><button (click)="comprar()" class="btnComprar">Comprar</button></li>
+            <ng-container *ngIf="show">
+                <li><button (click)="comprar()" class="btnComprar">Comprar</button></li>
+            </ng-container>
+            <ng-container *ngIf="!show">
+                <li><h3> Debe iniciar sesion para Comprar</h3></li>
+            </ng-container>
+
         </ul>
     </div>
 </div>

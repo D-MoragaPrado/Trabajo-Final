@@ -1,7 +1,32 @@
+.card{
+    left: 35%;
+    margin-top: 2em;
+    vertical-align: middle;
+    position: absolute;
+    align-self: center;
+    width: 30%;
+    border: 6px inset #151CCC;
+    border-radius: 15px;
+}
+
+mat-card-title{
+    margin-top: 3px;
+}
+
+#icono{
+    width: 20px;
+}
+
 #contenedor{
     background-color: bisque;
     top: 0;
     width: 100%;
     height: 100%;
     position: fixed;
+}
+
+#adminInfo{
+    width: 100%;
+    height: 30%;
+    background-color: burlywood;
 }

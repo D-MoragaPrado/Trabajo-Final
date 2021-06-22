@@ -16,7 +16,7 @@
                     <ng-container *ngIf="show2">
                         <mat-icon id="logo_cuenta">account_circle</mat-icon>
                         <li>
-                            <h3>Hola! {{user[0].nombres}}</h3>
+                            <h3 id="nombreUsuario">Hola! {{user[0].nombres}}</h3>
                         </li>
                         <li class="sesion">
                             <button (click)="cerrarSesion()" class="btnClose">Cerrar Sesión</button>

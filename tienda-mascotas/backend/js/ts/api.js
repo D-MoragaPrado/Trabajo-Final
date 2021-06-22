@@ -8,7 +8,6 @@ var cors = require('cors');
 var mysql = require('mysql');
 var sesionI = false;
 var usuarioSesion;
-var usuarioAdmin;
 app.use(bodyParser.urlencoded({
     extended: false
 }));
@@ -124,18 +123,16 @@ app.post('/realizar-compra', function (req, res) {
         total_compra += req.body[i].producto.precio * req.body[i].cantidadProducto;
     }
     connection.query("INSERT INTO `pedidos`( `comprador`, `fecha_compra`, `total_compra`)VALUES('" + comprador + "','" + fecha + "','" + total_compra + "')", function (req1, resultados) {
-        res.send("Pedido ingresado");
+        res.status(201).send("Pedido ingresado");
     });
     connection.query("SELECT MAX(id_pedido) AS id FROM pedidos", function (req1, resultados) {
-        for (var i = 0; i < req.body.length; i++) {
-            connection.query("INSERT INTO `compras`( `id_pedido`, `id_producto`, `cantidad_producto`)VALUES('" + resultados[0].id + "','" + req.body[i].producto.id + "','" + req.body[i].cantidadProducto + "')", function (req2, res2) {
-                res.status(200);
-            });
-            connection.query('UPDATE `producto` SET stock=(stock-?) WHERE id=?', [req.body[i].cantidadProducto, req.body[i].producto.id], function (reqSQL, resSQL) {
-                console.log("stock actualizado");
-            });
-        }
+        id = resultados;
     });
+    for (var i = 0; i < req.body.length; i++) {
+        connection.query("INSERT INTO `compras`( `id_pedido`, `id_producto`, `cantidad_producto`)VALUES('" + id + "','" + req.body[i].producto.id + "','" + req.body[i].cantidadProducto + "')", function (req1, resultados) {
+            res.send("compra ingresada");
+        });
+    }
 });
 //END CRUD Productos
 //!!CRUD Usuarios
@@ -225,28 +222,8 @@ app.get('/formulario-registro/:correo', function (req, res) {
 });
 //END CRUD Usuarios
 //!!CRUD Usuarios Admin
-app.post('/login/admin', function (req, res) {
-    var nombreAdmin = req.body.nombres_admin;
-    var passAdmin = md5_typescript_1.Md5.init(req.body.pass_admin);
-    connection.query('SELECT * FROM `usuario_admin` WHERE nombre_admin=? AND pass_admin=?', [nombreAdmin, passAdmin], function (reqSQL, resSQL) {
-        if (resSQL == '') {
-            console.log("Nombre Administrador inexistente o incorrecto");
-            res.send(false);
-        }
-        else {
-            usuarioAdmin = resSQL;
-            console.log("Usuario Administrador ingresado", usuarioAdmin);
-            res.send(true);
-        }
-    });
-});
-app.get('/obtener-administrador-activo', function (req, res) {
-    console.log("Administrador activo es: ", usuarioAdmin);
-    res.status(200).send(usuarioAdmin);
-});
-app.get('/cerrar-sesion-admin', function (req, res) {
-    usuarioAdmin = null;
-    res.status(200).send("Sesión Administrador Cerrada");
+app.get('/login/admin', function (req, res) {
+    var nombreAdmin = req.body;
 });
 //END CRUD Usuarios Admin
 //!!CRUD Regiones

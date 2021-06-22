@@ -28,7 +28,7 @@ export class ProductoComponent implements OnInit {
     this.cantidad = 1;
     this.formComment=this.fb.group({
       Comentario:['',[Validators.required,Validators.maxLength(150),Validators.minLength(2)]],
-      Rating:[0,[Validators.required]],
+      Rating:['',[Validators.required]],
   })
 
   }
@@ -80,6 +80,9 @@ export class ProductoComponent implements OnInit {
     for(let i=0;i<this.carrito.length;i++){
       if(this.carrito[i].producto==this.producto[0]){
         this.carrito[i].cantidadProducto+=this.cantidad;
+        if(this.carrito[i].cantidadProducto>this.producto[0].stock){
+          this.carrito[i].cantidadProducto=this.producto[0].stock;
+        }
         console.log("ya existe");
         noexiste=false;
       }

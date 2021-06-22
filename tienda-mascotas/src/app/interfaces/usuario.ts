@@ -1,5 +1,3 @@
-
-
 export interface Usuario {
     correo      : string;
     nombres     : string;
