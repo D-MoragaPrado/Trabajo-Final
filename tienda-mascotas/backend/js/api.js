@@ -6,6 +6,8 @@ var express = require('express');
 var app = express();
 var cors = require('cors');
 var mysql = require('mysql');
+var sesionI = false;
+var usuarioSesion;
 app.use(bodyParser.urlencoded({
     extended: false
 }));
@@ -100,7 +102,8 @@ app.post('/iniciar-sesion', function (req, res) {
             res.send(false);
         }
         else {
-            console.log("Existee");
+            usuarioSesion = resSQL;
+            console.log("Existee", usuarioSesion);
             res.send(true);
         }
     });
@@ -127,6 +130,14 @@ app.get('/obtener-usuario/:correo/:respuesta', function (req, res) {
         res.status(200).send(resSQL);
         //}
     });
+});
+app.get('/obtener-usuario-activo', function (req, res) {
+    console.log("usuario en sesion es:", usuarioSesion);
+    res.status(200).send(usuarioSesion);
+});
+app.get('/cerrar-sesion', function (req, res) {
+    usuarioSesion = null;
+    res.status(200).send("sesion Cerrada");
 });
 app.put('/cambiar-clave', function (req, res) {
     var correo = req.body.correo;

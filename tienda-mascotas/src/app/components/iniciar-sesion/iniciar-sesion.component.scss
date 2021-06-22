@@ -17,3 +17,19 @@ li{
 checkbox{
   background-color: blueviolet;
 }
+.si{
+  text-align: center;
+  margin-left:15px;
+}
+div#sesion-i{
+    width: 250px;
+    height: 250px;
+    display:inline-flex;
+    flex-direction:row;
+    border:2px outset #f01a52;
+    border-radius: 50px;
+    margin-bottom: 2em;
+    margin-left: 40%;
+    padding-top:8%;
+
+}

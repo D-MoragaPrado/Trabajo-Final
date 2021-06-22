@@ -2,16 +2,29 @@
     <div id="logo">
         <ul>
             <a [routerLink]="['/']" routerLinkActive="router-link-active"><li><img src="./../../../assets/icon_tienda/logo_nombre.png" alt="a"></li></a>
-            <li>
+            <li>          
                 <ul id="sesion">
-                <mat-icon id="logo_cuenta">account_circle</mat-icon>
-                <li>
-                    <a [routerLink]="['/iniciar-sesion']" routerLinkActive="router-link-active" >Iniciar sesion</a>
-                </li>
-                <li class="sesion">
-                    <a [routerLink]="['/formulario-registro']" routerLinkActive="router-link-active" >Crear Cuenta</a>
-                </li>
+                    <ng-container *ngIf="show1">
+                    <mat-icon id="logo_cuenta">account_circle</mat-icon>
+                    <li>
+                        <a [routerLink]="['/iniciar-sesion']" routerLinkActive="router-link-active" >Iniciar sesion</a>
+                    </li>
+                    <li class="sesion">
+                        <a [routerLink]="['/formulario-registro']" routerLinkActive="router-link-active" >Crear Cuenta</a>
+                    </li>
+                    </ng-container>
+                    <ng-container *ngIf="show2">
+                        <mat-icon id="logo_cuenta">account_circle</mat-icon>
+                        <li>
+                            <h3>Hola! {{user[0].nombres}}</h3>
+                        </li>
+                        <li class="sesion">
+                            <button (click)="cerrarSesion()" class="btnClose">Cerrar Sesión</button>
+                        </li>
+                        </ng-container>
                 </ul>
+                
+
             </li>
         </ul>
     </div>

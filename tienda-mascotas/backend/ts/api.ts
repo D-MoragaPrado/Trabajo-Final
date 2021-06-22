@@ -4,6 +4,8 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const mysql = require('mysql')
+let sesionI:boolean=false
+let usuarioSesion:any;
 
 
 app.use(bodyParser.urlencoded({
@@ -120,7 +122,8 @@ app.post('/iniciar-sesion', (req : any, res : any) => {
             res.send(false);
         }
         else{
-            console.log("Existee");
+            usuarioSesion=resSQL;
+            console.log("Existee",usuarioSesion);
             res.send(true);
         }
     })
@@ -147,6 +150,16 @@ app.get('/obtener-usuario/:correo/:respuesta', (req : any , res : any) => {
             res.status(200).send(resSQL);
         //}
     })
+})
+
+app.get('/obtener-usuario-activo', (req : any , res : any) => {
+    console.log("usuario en sesion es:",usuarioSesion)
+    res.status(200).send(usuarioSesion);
+})
+
+app.get('/cerrar-sesion', (req : any , res : any) => {
+    usuarioSesion=null;
+    res.status(200).send("sesion Cerrada");
 })
 
 app.put('/cambiar-clave', (req : any, res : any) => {

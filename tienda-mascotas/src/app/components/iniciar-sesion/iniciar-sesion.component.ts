@@ -13,6 +13,10 @@ import {ThemePalette} from '@angular/material/core';
 export class IniciarSesionComponent implements OnInit {
   task="primary";
   formularioI:FormGroup;
+  public show1:boolean = true;
+  public show2:boolean = false;
+  user:Array<Usuario>=[];
+
   constructor(private fb:FormBuilder,private servicioUsuario: ManejoUsuariosService ,private router : Router) {
     this.formularioI=this.fb.group({
       Correo:['',[Validators.required,Validators.email]],
@@ -22,12 +26,21 @@ export class IniciarSesionComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.servicioUsuario.getUsuarioActivo().subscribe((usuario) => {
+      console.log("cargando usuario activo");
+      if(usuario!= null){
+        this.show1=false;
+        this.show2=true;
+        this.user.push(usuario[0]);
+      }else{
+        this.show1=true;
+        this.show2=false;
+      }
+    });
   }
 
   EnviarDatos() {
     if (this.formularioI.valid) {
-      let valid:boolean;
-      console.log(this.formularioI.value)
       let usuario:Usuario={
         correo:this.formularioI.get('Correo')?.value,
         password:this.formularioI.get('Contrasenia')?.value,
@@ -42,8 +55,7 @@ export class IniciarSesionComponent implements OnInit {
       this.servicioUsuario.iniciarSesion(usuario).subscribe(respuesta=>{
         console.log("holi  ",respuesta);
         if(respuesta){
-          console.log("valido wey");
-          this.router.navigateByUrl('/');  
+          location.reload();   
         }else{
           alert("Correo y/o contraseña incorrectos");
         }

@@ -33,4 +33,10 @@ export class ManejoUsuariosService {
   cambiarClave(usuario:Usuario):Observable<any>{
     return this.servicio.put(`${this.url}/cambiar-clave`,usuario);
   }
+  getUsuarioActivo():Observable<any>{
+    return this.servicio.get(`${this.url}/obtener-usuario-activo`);
+  }
+  CerrarSesion():Observable<any>{
+    return this.servicio.get(`${this.url}/cerrar-sesion`);
+  }
 }
