@@ -39,6 +39,7 @@ export class ManejoProductosService {
     return this.servicio.post(`${this.url}/agregar-comentario`,comentario);
   }
   cambiarValoracion(producto:Producto):Observable<any>{
+    console.log(producto.calificacion);
     return this.servicio.put(`${this.url}/cambiar-valoracion`,producto);
   }
 }
