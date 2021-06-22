@@ -81,13 +81,22 @@ app.get('/comentarios/:idproducto', function (req, res) {
     var id_producto = req.params.idproducto;
     connection.query('SELECT * FROM comentarios WHERE id_producto=?', id_producto, function (reqSQL, resSQL) {
         if (resSQL == '') {
-            console.log('Product0 no existente');
+            console.log('Sin comentarios');
             res.status(404);
         }
         else {
             console.log(resSQL);
             res.status(200).send(resSQL);
         }
+    });
+});
+app.post('/agregar-comentario', function (req, res) {
+    var id_producto = req.body.id_producto;
+    var comment = req.body.comment;
+    var nombre_usuario = req.body.nombre_usuario;
+    var rating = req.body.rating;
+    connection.query("INSERT INTO `comentarios`(`id_producto`, `nombre_usuario`, `comment`, `rating`)VALUES('" + id_producto + "','" + nombre_usuario + "','" + comment + "','" + rating + "')", function (req1, resultados) {
+        res.status(201).send("Comentario Agregado");
     });
 });
 //END CRUD Productos

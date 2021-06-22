@@ -95,7 +95,7 @@ app.get('/comentarios/:idproducto', (req : any, res : any) => {
     let id_producto= req.params.idproducto;
     connection.query('SELECT * FROM comentarios WHERE id_producto=?',id_producto, (reqSQL : any, resSQL : any) => {
 		if(resSQL == ''){
-            console.log('Product0 no existente');
+            console.log('Sin comentarios');
             res.status(404);
             
         }
@@ -105,6 +105,17 @@ app.get('/comentarios/:idproducto', (req : any, res : any) => {
         } 
 	})
 })
+
+app.post('/agregar-comentario', (req : any, res : any) => {
+    let id_producto=req.body.id_producto;
+    let comment=req.body.comment;
+    let nombre_usuario=req.body.nombre_usuario;
+    let rating=req.body.rating;
+    connection.query("INSERT INTO `comentarios`(`id_producto`, `nombre_usuario`, `comment`, `rating`)VALUES('"+id_producto+"','"+nombre_usuario+"','"+comment+"','"+rating+"')",(req1:any,resultados:any)=>{
+        res.status(201).send("Comentario Agregado");
+    });
+})
+   
 //END CRUD Productos
 
 

@@ -28,7 +28,7 @@ export class ProductoComponent implements OnInit {
     this.cantidad = 1;
     this.formComment=this.fb.group({
       Comentario:['',[Validators.required,Validators.maxLength(150),Validators.minLength(2)]],
-      //Rating:[''],
+      Rating:['',[Validators.required]],
   })
 
   }
@@ -91,6 +91,18 @@ export class ProductoComponent implements OnInit {
   }
 
   AgregarComentario(){
+    let comment:Comentario={
+      id_producto   : this.producto[0].id,
+      comment       : this.formComment.get('Comentario')?.value,
+      rating        : this.formComment.get('Rating')?.value,
+      nombre_usuario: this.user[0].nombres,
+    }
+    console.log(comment);
+    this.servicioProducto.agregarComentario(comment).subscribe(respuesta=>{
+      console.log(respuesta);
+      
+    });
+    location.reload();
 
   }
 
