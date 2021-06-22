@@ -3,6 +3,8 @@ import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
 import{Producto}from '../../interfaces/producto';
 import { ActivatedRoute, Params } from '@angular/router';
 import {CarroCompra,Carro}from '../../interfaces/carro-compra';
+import {Usuario} from '../../interfaces/usuario';
+import {ManejoUsuariosService} from '../../services/manejo-usuarios.service';
 
 import {ManejoProductosService} from '../../services/manejo-productos.service';
 @Component({
@@ -15,7 +17,10 @@ export class ProductoComponent implements OnInit {
   cantidad:number;
   producto:Array<Producto>=[];
   carrito:Array<CarroCompra>=Carro;
-  constructor(private servicioProducto : ManejoProductosService,private rutaActiva: ActivatedRoute) {
+  public show:boolean = false;
+  user:Array<Usuario>=[];
+
+  constructor(private servicioProducto : ManejoProductosService,private rutaActiva: ActivatedRoute,private servicioUsuario: ManejoUsuariosService ) {
     this.cantidad = 1;
    }
 
@@ -25,6 +30,15 @@ export class ProductoComponent implements OnInit {
         for (let i = 0; i < prod.length; i++) {
           this.producto.push(prod[i]);
           console.log(prod[i]);
+        }
+      });
+      this.servicioUsuario.getUsuarioActivo().subscribe((usuario) => {
+        console.log("cargando usuario activo");
+        if(usuario!= null){
+          this.show=true;
+          this.user.push(usuario[0]);
+        }else{
+          this.show=false;
         }
       });
   }
