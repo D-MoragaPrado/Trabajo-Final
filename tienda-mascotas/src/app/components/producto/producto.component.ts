@@ -97,10 +97,16 @@ export class ProductoComponent implements OnInit {
       rating        : this.formComment.get('Rating')?.value,
       nombre_usuario: this.user[0].nombres,
     }
+    let newProducto=this.producto[0];
+    let newRating=((this.producto[0].calificacion*this.comentarios.length)+comment.rating)/(this.comentarios.length+1);
+    newProducto.calificacion=newRating;
     console.log(comment);
     this.servicioProducto.agregarComentario(comment).subscribe(respuesta=>{
       console.log(respuesta);
       
+    });
+    this.servicioProducto.cambiarValoracion(newProducto).subscribe(respuesta=>{
+      console.log(respuesta);
     });
     location.reload();
 

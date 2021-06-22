@@ -107,6 +107,7 @@ app.get('/comentarios/:idproducto', (req : any, res : any) => {
 })
 
 app.post('/agregar-comentario', (req : any, res : any) => {
+    console.log(req.body);
     let id_producto=req.body.id_producto;
     let comment=req.body.comment;
     let nombre_usuario=req.body.nombre_usuario;
@@ -114,6 +115,21 @@ app.post('/agregar-comentario', (req : any, res : any) => {
     connection.query("INSERT INTO `comentarios`(`id_producto`, `nombre_usuario`, `comment`, `rating`)VALUES('"+id_producto+"','"+nombre_usuario+"','"+comment+"','"+rating+"')",(req1:any,resultados:any)=>{
         res.status(201).send("Comentario Agregado");
     });
+})
+
+app.put('/cambiar-valoracion', (req : any, res : any) => {
+    let id_producto= req.body.id;
+    let newValoracion=req.body.calificacion;
+    console.log("la nueva valoracion es ",newValoracion);
+    connection.query('UPDATE `producto` SET calificacion=? WHERE id=?', [newValoracion,id_producto], (reqSQL : any, resSQL : any) => {
+        /*if(resSQL == ''){
+            res.send(false);
+        }
+        else{*/
+            res.status(200).send(resSQL);
+        //}
+    })
+
 })
    
 //END CRUD Productos

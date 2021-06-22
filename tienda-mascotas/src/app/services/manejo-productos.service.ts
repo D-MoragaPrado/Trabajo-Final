@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Comentario } from '../interfaces/comentario';
+import { Producto } from '../interfaces/producto';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +35,10 @@ export class ManejoProductosService {
   getComentarios(id_producto:number):Observable<any>{
     return this.servicio.get(`${this.url}/comentarios/${id_producto}`);
   }
-  agregarComentario(comentario:Comentario){
+  agregarComentario(comentario:Comentario):Observable<any>{
     return this.servicio.post(`${this.url}/agregar-comentario`,comentario);
+  }
+  cambiarValoracion(producto:Producto):Observable<any>{
+    return this.servicio.put(`${this.url}/cambiar-valoracion`,producto);
   }
 }

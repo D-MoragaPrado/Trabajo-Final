@@ -91,12 +91,26 @@ app.get('/comentarios/:idproducto', function (req, res) {
     });
 });
 app.post('/agregar-comentario', function (req, res) {
+    console.log(req.body);
     var id_producto = req.body.id_producto;
     var comment = req.body.comment;
     var nombre_usuario = req.body.nombre_usuario;
     var rating = req.body.rating;
     connection.query("INSERT INTO `comentarios`(`id_producto`, `nombre_usuario`, `comment`, `rating`)VALUES('" + id_producto + "','" + nombre_usuario + "','" + comment + "','" + rating + "')", function (req1, resultados) {
         res.status(201).send("Comentario Agregado");
+    });
+});
+app.put('/cambiar-valoracion', function (req, res) {
+    var id_producto = req.body.id;
+    var newValoracion = req.body.calificacion;
+    console.log("la nueva valoracion es ", newValoracion);
+    connection.query('UPDATE `producto` SET calificacion=? WHERE id=?', [newValoracion, id_producto], function (reqSQL, resSQL) {
+        /*if(resSQL == ''){
+            res.send(false);
+        }
+        else{*/
+        res.status(200).send(resSQL);
+        //}
     });
 });
 //END CRUD Productos
