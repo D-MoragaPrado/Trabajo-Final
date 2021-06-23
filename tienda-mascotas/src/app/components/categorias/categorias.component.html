@@ -1,17 +1,17 @@
 <div id="contenedorFiltros">
     <form [formGroup]="formFiltro" (ngSubmit)="Filtrar()"  class="clase-form">
     <ul class="ulfiltro">
-        aqui para filtrar wey<br><br>      
-        <li>
-            Rango de Precios<br>
-            <input type="number" placeholder="min" class="inputN" formControlName="min"> - <input type="number" placeholder="max" class="inputN" formControlName="max"> 
-        </li>  
-
+        aqui para filtrar wey<br><br>
         <li>
             Disponibilidad<br>
             <mat-checkbox class="disponibilidad" [color]=task formControlName="Disponible">Disponible</mat-checkbox> <br>
             <mat-checkbox class="disponibilidad" [color]=task formControlName="NoDisponible">No Disponible</mat-checkbox>
         </li>
+
+        <li>
+            Rango de Precios<br>
+            <input type="number" placeholder="min" class="inputN" formControlName="min"> - <input type="number" placeholder="max" class="inputN" formControlName="max"> 
+        </li>  
 
         <li>
             Rango de Valoración<br>
