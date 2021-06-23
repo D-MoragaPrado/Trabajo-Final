@@ -6,7 +6,6 @@ export interface Producto {
     src_imagen      : string;
     precio          : number;
     stock           : number;
-    comentarios     : Array<string>;
     calificacion    : number;
     descripcion     : string;
 }

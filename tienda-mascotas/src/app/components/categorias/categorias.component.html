@@ -1,4 +1,5 @@
 <div id="contenedorFiltros">
+    <form [formGroup]="formFiltro" (ngSubmit)="Filtrar()"  class="clase-form">
     <ul class="ulfiltro">
         aqui para filtrar wey<br><br>      
         <li>
@@ -8,7 +9,7 @@
 
         <li>
             Disponibilidad<br>
-            <mat-checkbox class="disponibilidad" [color]=task formControlName="Disponible">Disponible</mat-checkbox>
+            <mat-checkbox class="disponibilidad" [color]=task formControlName="Disponible">Disponible</mat-checkbox> <br>
             <mat-checkbox class="disponibilidad" [color]=task formControlName="NoDisponible">No Disponible</mat-checkbox>
         </li>
 
@@ -26,7 +27,7 @@
                 --><input id="radio5" type="radio" formControlName="Rating1" value=1><!--
                 --><label for="radio5">♥</label>
               </span>
-              - 
+              <br> - 
               <span class="clasificacion">
                 <input id="r1" type="radio" formControlName="Rating2" value=5><!--
                 --><label for="r1">♥</label><!--
@@ -41,8 +42,9 @@
               </span>
         </li>  
 
-        <li><button>Filtrar</button></li>
-    </ul>   
+        <li><button type="submit" >Filtrar</button></li>
+    </ul>
+    </form>   
 </div>
 
 <div id="contenedorProducto">
