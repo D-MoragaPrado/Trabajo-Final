@@ -45,4 +45,7 @@ export class ManejoProductosService {
   RealizarCompra():Observable<any>{
     return this.servicio.post(`${this.url}/realizar-compra`,Carro);
   }
+  getProductosReporte() : Observable<any>{
+    return this.servicio.get(`${this.url}/obtener-productos`);
+  }
 }

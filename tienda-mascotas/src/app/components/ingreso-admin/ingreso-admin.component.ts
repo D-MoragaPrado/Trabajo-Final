@@ -33,6 +33,7 @@ export class IngresoAdminComponent implements OnInit {
       }
       this.servicioAdmin.inicioAdmin(admin).subscribe((res) => {
         console.log(res)
+        console.log(admin.nombre_admin)
         if(res){
           this.router.navigateByUrl('/admin');
         }

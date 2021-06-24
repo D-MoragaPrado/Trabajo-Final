@@ -157,6 +157,12 @@ app.post('/realizar-compra', (req : any, res : any) => {
     
 
 })  
+
+app.get('/obtener-productos', (req : any, res : any) => {
+    connection.query('SELECT DISTINCT id_parcial, comprador, nombre, total_compra, cantidad_producto  FROM compras LEFT JOIN pedidos ON compras.id_pedido = pedidos.id_pedido LEFT JOIN producto ON compras.id_producto = producto.id', (reqSQL : any, resSQL : any) => {
+        res.status(200).send(resSQL);
+    })
+})
 //END CRUD Productos
 
 
@@ -216,6 +222,12 @@ app.get('/obtener-usuario/:correo/:respuesta', (req : any , res : any) => {
     })
 })
 
+app.get('/obtener-usuarios', (req : any, res : any) => {
+    connection.query('SELECT `rut`, `nombres`, `apellidos`, `correo` FROM `usuario`', (reqSQL : any, resSQL : any) => {
+        res.status(200).send(resSQL);
+    })
+})
+
 app.get('/obtener-usuario-activo', (req : any , res : any) => {
     console.log("usuario en sesion es:",usuarioSesion)
     res.status(200).send(usuarioSesion);
@@ -258,11 +270,12 @@ app.get('/formulario-registro/:correo', (req : any , res : any) => {
 //!!CRUD Usuarios Admin
 
 app.post('/login/admin', (req : any, res : any) => {
-    let nombreAdmin = req.body.nombres_admin;
+    let nombreAdmin = req.body.nombre_admin;
     let passAdmin = Md5.init(req.body.pass_admin);
     connection.query('SELECT * FROM `usuario_admin` WHERE nombre_admin=? AND pass_admin=?', [nombreAdmin, passAdmin], (reqSQL : any, resSQL : any) => {
         if(resSQL == ''){
             console.log("Nombre Administrador inexistente o incorrecto");
+            console.log(nombreAdmin, " ", passAdmin);
             res.send(false);
         }
         else{

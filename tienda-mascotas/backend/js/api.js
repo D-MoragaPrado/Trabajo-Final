@@ -137,6 +137,11 @@ app.post('/realizar-compra', function (req, res) {
         }
     });
 });
+app.get('/obtener-productos', function (req, res) {
+    connection.query('SELECT DISTINCT id_parcial, comprador, nombre, total_compra, cantidad_producto  FROM compras LEFT JOIN pedidos ON compras.id_pedido = pedidos.id_pedido LEFT JOIN producto ON compras.id_producto = producto.id', function (reqSQL, resSQL) {
+        res.status(200).send(resSQL);
+    });
+});
 //END CRUD Productos
 //!!CRUD Usuarios
 app.post('/crearUsuario', function (req, res) {
@@ -191,6 +196,11 @@ app.get('/obtener-usuario/:correo/:respuesta', function (req, res) {
         //}
     });
 });
+app.get('/obtener-usuarios', function (req, res) {
+    connection.query('SELECT `rut`, `nombres`, `apellidos`, `correo` FROM `usuario`', function (reqSQL, resSQL) {
+        res.status(200).send(resSQL);
+    });
+});
 app.get('/obtener-usuario-activo', function (req, res) {
     console.log("usuario en sesion es:", usuarioSesion);
     res.status(200).send(usuarioSesion);
@@ -226,11 +236,12 @@ app.get('/formulario-registro/:correo', function (req, res) {
 //END CRUD Usuarios
 //!!CRUD Usuarios Admin
 app.post('/login/admin', function (req, res) {
-    var nombreAdmin = req.body.nombres_admin;
+    var nombreAdmin = req.body.nombre_admin;
     var passAdmin = md5_typescript_1.Md5.init(req.body.pass_admin);
     connection.query('SELECT * FROM `usuario_admin` WHERE nombre_admin=? AND pass_admin=?', [nombreAdmin, passAdmin], function (reqSQL, resSQL) {
         if (resSQL == '') {
             console.log("Nombre Administrador inexistente o incorrecto");
+            console.log(nombreAdmin, " ", passAdmin);
             res.send(false);
         }
         else {

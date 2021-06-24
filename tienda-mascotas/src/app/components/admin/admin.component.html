@@ -5,20 +5,66 @@
                 <div mat-card-avatar id="icono">
                     <mat-icon>badge</mat-icon>
                 </div>
-              
                 <mat-card-title> {{admin[0].nombre_admin}} </mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                <h3>Correo Electronico: {{admin[0].correo_electronico_admin}}</h3>
-                <h3>Numero de Contacto: {{admin[0].contacto_admin}}</h3>
+                <h3>Correo Electronico: {{admin[0].correo_electronico_admin}} </h3>
+                <h3>Numero de Contacto: {{admin[0].contacto_admin}} </h3>
             </mat-card-content>
             <mat-card-actions>
                 <button (click)="cerrarSesion()" class="btnClose">Cerrar Sesion</button>
             </mat-card-actions>
         </mat-card>
     </div>
-    <mat-grid-list cols="2" rowHeight="2:1">
-        <mat-grid-tile>PotoPotoPotoPotoPotoPotoPoto</mat-grid-tile>
-        <mat-grid-tile>2</mat-grid-tile>
-    </mat-grid-list>
+    <div id="reporte">
+        <div class="report">
+            <h1>Reporte Compras</h1>
+            <table class="table table-striped">
+                <thead>
+                    <th scope="col">id_parcial</th>
+                    <th scope="col">Comprador</th>
+                    <th scope="col">Nombre Producto</th>
+                    <th scope="col">Total compra</th>
+                    <th scope="col">Cantidad de Producto</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let compra of compras">
+                        <th scope="row">{{compra.id_parcial}}</th>
+                        <td>{{compra.comprador}}</td>
+                        <td>{{compra.nombre}}</td>
+                        <td>{{compra.total_compra}}</td>
+                        <td>{{compra.cantidad_producto}}</td>
+                    </tr>
+                </tbody>
+                <div class="d-flex justify-content-between p-2">
+                    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refresh()"></ngb-pagination>
+                    <select class="custom-select" style="width: auto;" (ngModelChange)="refresh()">
+                        <option [ngValue]="5"></option>
+                        <option [ngValue]="10"></option>
+                        <option [ngValue]="20"></option>
+                    </select>
+                </div>
+            </table>
+            
+        </div>
+        <div class="report">
+            <h1>Reporte Cuentas</h1>
+            <table class="table table-striped">
+                <thead>
+                    <th scope="col">Rut</th>
+                    <th scope="col">Nombres</th>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col">Correo</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let usuario of usuarios">
+                        <th scope="row">{{usuario.rut}}</th>
+                        <td>{{usuario.nombres}}</td>
+                        <td>{{usuario.apellidos}}</td>
+                        <td>{{usuario.correo}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>

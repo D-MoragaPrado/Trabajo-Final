@@ -39,4 +39,7 @@ export class ManejoUsuariosService {
   CerrarSesion():Observable<any>{
     return this.servicio.get(`${this.url}/cerrar-sesion`);
   }
+  getUsuarios() : Observable<any>{
+    return this.servicio.get(`${this.url}/obtener-usuarios`);
+  }
 }
