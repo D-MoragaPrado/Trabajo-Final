@@ -48,4 +48,29 @@ export class ManejoProductosService {
   getProductosReporte() : Observable<any>{
     return this.servicio.get(`${this.url}/obtener-productos`);
   }
+
+  filtroTotal(cat:string,subcat:string,pmin:number,pmax:number,rmin:number,rmax:number):Observable<any>{
+    return this.servicio.get(`${this.url}/filtro-total/${cat}/${subcat}/${pmin}/${pmax}/${rmin}/${rmax}`);
+  }
+  filtroDisponibilidad(cat:string,subcat:string):Observable<any>{
+    return this.servicio.get(`${this.url}/filtro-disponible/${cat}/${subcat}`);
+  }
+  filtroPrecio(cat:string,subcat:string,pmin:number,pmax:number):Observable<any>{
+    return this.servicio.get(`${this.url}/filtro-precio/${cat}/${subcat}/${pmin}/${pmax}`);
+  }
+  filtroRating(cat:string,subcat:string,rmin:number,rmax:number):Observable<any>{
+    return this.servicio.get(`${this.url}/filtro-rating/${cat}/${subcat}/${rmin}/${rmax}`);
+  }
+  filtroDyP(cat:string,subcat:string,pmin:number,pmax:number):Observable<any>{
+    return this.servicio.get(`${this.url}/filtro-disponibilidad-precio/${cat}/${subcat}/${pmin}/${pmax}`);
+  }
+
+  filtroDyR(cat:string,subcat:string,rmin:number,rmax:number):Observable<any>{
+    return this.servicio.get(`${this.url}/filtro-disponibilidad-rating/${cat}/${subcat}/${rmin}/${rmax}`);
+
+  }
+  filtroPyR(cat:string,subcat:string,pmin:number,pmax:number,rmin:number,rmax:number):Observable<any>{
+    return this.servicio.get(`${this.url}/filtro-precio-rating/${cat}/${subcat}/${pmin}/${pmax}/${rmin}/${rmax}`);
+
+  }
 }

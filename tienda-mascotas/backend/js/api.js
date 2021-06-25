@@ -142,6 +142,146 @@ app.get('/obtener-productos', function (req, res) {
         res.status(200).send(resSQL);
     });
 });
+app.get('/filtro-total/:cat/:subcat/:pmin/:pmax/:rmin/:rmax', function (req, res) {
+    var cat = req.params.cat;
+    var subcat = req.params.subcat;
+    var pmin = req.params.pmin;
+    var pmax = req.params.pmax;
+    var rmin = req.params.rmin;
+    var rmax = req.params.rmax;
+    console.log("filtro totall");
+    if (subcat == "none") {
+        console.log("solo categoriass");
+        connection.query('SELECT * FROM producto WHERE (categoria_principal_id=(SELECT categoria_id FROM categorias WHERE nombre_categoria=?) AND (stock>0) AND (precio>=? AND precio<=?) AND (calificacion>=? AND calificacion<=?))  ', [cat, pmin, pmax, rmin, rmax], function (reqSQL, resSQL) {
+            console.log(resSQL);
+            res.status(200).send(resSQL);
+        });
+    }
+    else {
+        console.log("con sub");
+        connection.query('SELECT * FROM producto WHERE (categoria_principal_id=(SELECT categoria_id FROM categorias WHERE nombre_categoria=?) AND subcategoria_id=(SELECT categoria_id FROM categorias WHERE nombre_categoria=?) AND (stock>0) AND (precio>=? AND precio<=?) AND (calificacion>=? AND calificacion<=?)) ', [cat, subcat, pmin, pmax, rmin, rmax], function (reqSQL, resSQL) {
+            console.log(resSQL);
+            res.status(200).send(resSQL);
+        });
+    }
+});
+app.get('/filtro-disponible/:cat/:subcat', function (req, res) {
+    var cat = req.params.cat;
+    var subcat = req.params.subcat;
+    console.log(cat, subcat);
+    if (subcat == "none") {
+        console.log("solo categoriass y disponible");
+        connection.query('SELECT * FROM  `producto` WHERE (categoria_principal_id=(SELECT categoria_id FROM categorias WHERE nombre_categoria=?) AND (stock>0))', cat, function (reqSQL, resSQL) {
+            res.status(200).send(resSQL);
+        });
+    }
+    else {
+        console.log("con sub y disponible");
+        connection.query('SELECT * FROM `producto` WHERE (categoria_principal_id=(SELECT categoria_id FROM categorias WHERE nombre_categoria=?) AND subcategoria_id=(SELECT categoria_id FROM categorias WHERE nombre_categoria=?) AND (stock>0))', [cat, subcat], function (reqSQL, resSQL) {
+            res.status(200).send(resSQL);
+        });
+    }
+});
+app.get('/filtro-precio/:cat/:subcat/:pmin/:pmax', function (req, res) {
+    var cat = req.params.cat;
+    var subcat = req.params.subcat;
+    var pmin = req.params.pmin;
+    var pmax = req.params.pmax;
+    console.log(cat, subcat);
+    if (subcat == "none") {
+        console.log("solo categoriass y por precio");
+        connection.query('SELECT * FROM  `producto` WHERE (categoria_principal_id=(SELECT categoria_id FROM categorias WHERE nombre_categoria=?) AND (precio>=? AND precio<=?))', [cat, pmin, pmax], function (reqSQL, resSQL) {
+            res.status(200).send(resSQL);
+        });
+    }
+    else {
+        console.log("con sub y por precio");
+        connection.query('SELECT * FROM `producto` WHERE (categoria_principal_id=(SELECT categoria_id FROM categorias WHERE nombre_categoria=?) AND subcategoria_id=(SELECT categoria_id FROM categorias WHERE nombre_categoria=?) AND (precio>=? AND precio<=?))', [cat, subcat, pmin, pmax], function (reqSQL, resSQL) {
+            res.status(200).send(resSQL);
+        });
+    }
+});
+app.get('/filtro-rating/:cat/:subcat/:rmin/:rmax', function (req, res) {
+    var cat = req.params.cat;
+    var subcat = req.params.subcat;
+    var rmin = req.params.rmin;
+    var rmax = req.params.rmax;
+    console.log(cat, subcat);
+    if (subcat == "none") {
+        console.log("solo categoriass y por precio");
+        connection.query('SELECT * FROM  `producto` WHERE (categoria_principal_id=(SELECT categoria_id FROM categorias WHERE nombre_categoria=?) AND (calificacion>=? AND calificacion<=?))', [cat, rmin, rmax], function (reqSQL, resSQL) {
+            res.status(200).send(resSQL);
+        });
+    }
+    else {
+        console.log("con sub y por precio");
+        connection.query('SELECT * FROM `producto` WHERE (categoria_principal_id=(SELECT categoria_id FROM categorias WHERE nombre_categoria=?) AND subcategoria_id=(SELECT categoria_id FROM categorias WHERE nombre_categoria=?) AND (calificacion>=? AND calificacion<=?))', [cat, subcat, rmin, rmax], function (reqSQL, resSQL) {
+            res.status(200).send(resSQL);
+        });
+    }
+});
+app.get('/filtro-disponibilidad-precio/:cat/:subcat/:pmin/:pmax', function (req, res) {
+    var cat = req.params.cat;
+    var subcat = req.params.subcat;
+    var pmin = req.params.pmin;
+    var pmax = req.params.pmax;
+    if (subcat == "none") {
+        console.log("solo categoriass y disponibilidad con precio");
+        connection.query('SELECT * FROM producto WHERE (categoria_principal_id=(SELECT categoria_id FROM categorias WHERE nombre_categoria=?) AND (stock>0) AND (precio>=? AND precio<=?) )  ', [cat, pmin, pmax], function (reqSQL, resSQL) {
+            console.log(resSQL);
+            res.status(200).send(resSQL);
+        });
+    }
+    else {
+        console.log("con sub y disponibilidad con precio");
+        connection.query('SELECT * FROM producto WHERE (categoria_principal_id=(SELECT categoria_id FROM categorias WHERE nombre_categoria=?) AND subcategoria_id=(SELECT categoria_id FROM categorias WHERE nombre_categoria=?) AND (stock>0) AND (precio>=? AND precio<=?) ) ', [cat, subcat, pmin, pmax], function (reqSQL, resSQL) {
+            console.log(resSQL);
+            res.status(200).send(resSQL);
+        });
+    }
+});
+app.get('/filtro-disponibilidad-rating/:cat/:subcat/:rmin/:rmax', function (req, res) {
+    var cat = req.params.cat;
+    var subcat = req.params.subcat;
+    var rmin = req.params.rmin;
+    var rmax = req.params.rmax;
+    if (subcat == "none") {
+        console.log("solo categoriass y disponibilidad con rating");
+        connection.query('SELECT * FROM producto WHERE (categoria_principal_id=(SELECT categoria_id FROM categorias WHERE nombre_categoria=?) AND (stock>0)  AND (calificacion>=? AND calificacion<=?))  ', [cat, rmin, rmax], function (reqSQL, resSQL) {
+            console.log(resSQL);
+            res.status(200).send(resSQL);
+        });
+    }
+    else {
+        console.log("con sub y disponibilidad con rating");
+        connection.query('SELECT * FROM producto WHERE (categoria_principal_id=(SELECT categoria_id FROM categorias WHERE nombre_categoria=?) AND subcategoria_id=(SELECT categoria_id FROM categorias WHERE nombre_categoria=?) AND (stock>0) AND (calificacion>=? AND calificacion<=?)) ', [cat, subcat, rmin, rmax], function (reqSQL, resSQL) {
+            console.log(resSQL);
+            res.status(200).send(resSQL);
+        });
+    }
+});
+app.get('/filtro-precio-rating/:cat/:subcat/:pmin/:pmax/:rmin/:rmax', function (req, res) {
+    var cat = req.params.cat;
+    var subcat = req.params.subcat;
+    var pmin = req.params.pmin;
+    var pmax = req.params.pmax;
+    var rmin = req.params.rmin;
+    var rmax = req.params.rmax;
+    if (subcat == "none") {
+        console.log("solo categoriass y precio con rating");
+        connection.query('SELECT * FROM producto WHERE (categoria_principal_id=(SELECT categoria_id FROM categorias WHERE nombre_categoria=?)  AND (precio>=? AND precio<=?) AND (calificacion>=? AND calificacion<=?))  ', [cat, pmin, pmax, rmin, rmax], function (reqSQL, resSQL) {
+            console.log(resSQL);
+            res.status(200).send(resSQL);
+        });
+    }
+    else {
+        console.log("con sub");
+        connection.query('SELECT * FROM producto WHERE (categoria_principal_id=(SELECT categoria_id FROM categorias WHERE nombre_categoria=?) AND subcategoria_id=(SELECT categoria_id FROM categorias WHERE nombre_categoria=?) AND (precio>=? AND precio<=?) AND (calificacion>=? AND calificacion<=?)) ', [cat, subcat, pmin, pmax, rmin, rmax], function (reqSQL, resSQL) {
+            console.log(resSQL);
+            res.status(200).send(resSQL);
+        });
+    }
+});
 //END CRUD Productos
 //!!CRUD Usuarios
 app.post('/crearUsuario', function (req, res) {
