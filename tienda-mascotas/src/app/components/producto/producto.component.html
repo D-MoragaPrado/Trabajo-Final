@@ -1,8 +1,7 @@
 <div id="claseSuperior">
     <span *ngFor = "let pro of producto">  
-
         <div id="imagen">
-        <p><img src="{{pro.src_imagen}}" class="imagen"></p>
+            <p><img src="{{pro.src_imagen}}" class="imagen"></p>
         </div>
         
         <div id="info">
@@ -11,8 +10,7 @@
                 <span class="star" [class.full]="fill === 100">
                   <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
                 </span>
-            </ng-template>
-              
+            </ng-template>             
             <p><ngb-rating [(rate)]=pro.calificacion [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating></p>
 
             <span class="precio"> ${{pro.precio}}</span><br>
@@ -23,7 +21,6 @@
                 Cantidad
             </span>
             <span *ngIf="pro.stock==0"><h4>Producto no disponible<br></h4></span>
-
         </div>
     </span>
 </div>
@@ -58,15 +55,13 @@
 <ul *ngFor = "let comentario of comentarios">
     <li>
         {{comentario.nombre_usuario}}
-        <ng-container *ngIf="comentario.rating!=null">
-            <ng-template #t let-fill="fill">
-                <span class="star2" [class.full]="fill === 100">
-                <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
-                </span>
-            </ng-template>
-            
-            <p><ngb-rating [(rate)]=comentario.rating [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating></p>
-        </ng-container>
+        <ng-template #t let-fill="fill">
+            <span class="star2" [class.full]="fill === 100">
+            <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+            </span>
+        </ng-template>           
+        <p><ngb-rating [(rate)]=comentario.rating [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating></p>
+        
     </li>
     <li>{{comentario.comment}}</li>
 </ul>

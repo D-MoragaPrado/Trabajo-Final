@@ -1,19 +1,19 @@
 <div id="contenedorFiltros">
     <form [formGroup]="formFiltro" (ngSubmit)="Filtrar()"  class="clase-form">
     <ul class="ulfiltro">
-        aqui para filtrar wey<br><br>
+        <h2>Filtros</h2>
         <li>
-            Disponibilidad<br>
-            <mat-checkbox class="disponibilidad" [color]=task formControlName="Disponible">Disponible</mat-checkbox> <br>
+            <h4>Disponibilidad</h4>
+            <mat-checkbox class="disponibilidad" [color]=task formControlName="Disponible">Solo Disponibles</mat-checkbox> <br>
         </li>
 
         <li>
-            Rango de Precios<br>
+            <h4>Rango de Precios</h4>
             <input type="number" placeholder="min" class="inputN" formControlName="min"> - <input type="number" placeholder="max" class="inputN" formControlName="max"> 
         </li>  
 
         <li>
-            Rango de Valoración<br>
+           <h4>Rango de Valoración</h4>
             <span class="clasificacion">
                 <input id="radio1" type="radio" formControlName="Rating1" value=5><!--
                 --><label for="radio1">♥</label><!--
@@ -41,7 +41,7 @@
               </span>
         </li>  
 
-        <li><button type="submit" >Filtrar</button></li>
+        <li><button type="submit" class="btnFiltrar">Filtrar</button></li>
     </ul>
     </form>   
 </div>
@@ -65,7 +65,6 @@
                             </span>
                         </ng-template>
                         <p><ngb-rating [(rate)]=producto.calificacion [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating></p>
-                        <!--<pre>Rate: <b>{{producto.calificacion}}</b></pre>-->
                     </mat-card-content>
                   </mat-card>
             </button>
@@ -73,5 +72,3 @@
         </li>
     </ul>
 </div>
-
-

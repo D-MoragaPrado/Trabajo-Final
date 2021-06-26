@@ -36,14 +36,6 @@
                         <td>{{compra.cantidad_producto}}</td>
                     </tr>
                 </tbody>
-                <div class="d-flex justify-content-between p-2">
-                    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refresh()"></ngb-pagination>
-                    <select class="custom-select" style="width: auto;" (ngModelChange)="refresh()">
-                        <option [ngValue]="5"></option>
-                        <option [ngValue]="10"></option>
-                        <option [ngValue]="20"></option>
-                    </select>
-                </div>
             </table>
             
         </div>

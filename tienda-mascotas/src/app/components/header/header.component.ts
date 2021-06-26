@@ -23,19 +23,16 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.servicioProducto.getCategorias(1).subscribe((categoriaP) => {
       for (let i = 0; i < categoriaP.length; i++) {
-        this.subCategoriasPerro.push(categoriaP[i])
-        console.log(categoriaP[i])
+        this.subCategoriasPerro.push(categoriaP[i]);
       }
     });
     this.servicioProducto.getCategorias(2).subscribe((categoria) => {
       for (let i = 0; i < categoria.length; i++) {
-        this.subCategoriasGato.push(categoria[i])
-        console.log(categoria[i])
+        this.subCategoriasGato.push(categoria[i]);
       }
     });
 
     this.servicioUsuario.getUsuarioActivo().subscribe((usuario) => {
-      console.log("cargando usuario activo");
       if(usuario!= null){
         this.show1=false;
         this.show2=true;
@@ -52,7 +49,6 @@ export class HeaderComponent implements OnInit {
     this.servicioUsuario.CerrarSesion().subscribe((usuario) => { 
       console.log(usuario);
     });
-    console.log("sesion cerrada"); 
     location.reload();
   }
 

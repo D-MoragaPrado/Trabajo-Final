@@ -2,34 +2,49 @@ div{
     display: inline-block;   
     flex-direction:row;  
 }
+
 ul{
     list-style-type: none;
 }
+
 textarea{
     width: 60%;
 }
 
-input[type = "radio"]{ display:none;}
-
-.clasificacion{
-    direction: rtl;/* right to left */
-    unicode-bidi: bidi-override;/* bidi de bidireccional */
+h2{
+    font: oblique 30px serif;
 }
-label:hover,
-label:hover ~ label {
-  color: #f01a52;
+
+h3{
+    font: oblique 20px serif;
+    padding-left:2em;
+}
+
+h4{
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: bolder
+}
+
+input[type = "radio"]{
+    display:none;
 }
 
 input[type="radio"]:checked ~ label {
-  color: #f01a52;
+    color: #f01a52;
 }
+
 label{
     font-size: 20px;
 }
 
-.imagen{
-    //width: 300px;
-    height: 300px;
+span{
+    margin-top:10px;
+}
+
+label:hover,
+label:hover ~ label {
+  color: #f01a52;
 }
 
 div#claseSuperior{
@@ -41,7 +56,6 @@ div#imagen{
     width: 40%;
     top: 20px;
     left: 20px;
-    //background-color: rgba(255, 0, 0, 0.185);
     text-align: center;
 }
 
@@ -52,20 +66,15 @@ div#info{
     left: 20px;
     font-style: oblique;
     font-family:cursive;
-    //background-color: rgba(0, 0, 255, 0.137);
 }
 
-h2{
-    font: oblique 30px serif;
+.clasificacion{
+    direction: rtl;/* right to left */
+    unicode-bidi: bidi-override;/* bidi de bidireccional */
 }
-h3{
-    font: oblique 20px serif;
-    padding-left:2em;
-}
-h4{
-    margin-top: 10px;
-    font-size: 12px;
-    font-weight: bolder
+
+.imagen{
+    height: 300px;
 }
 
 .precio{
@@ -74,25 +83,21 @@ h4{
     margin-top:10px;
     padding-bottom:10px;
 }
-span{
-    margin-top:10px;
-}
-
 
 .star{
     position: relative;
     display: inline-block;
     font-size: 2rem;
-    color: #d3d3d3;
-    
+    color: #d3d3d3;    
 }
+
 .star2{
     position: relative;
     display: inline-block;
     font-size: 1rem;
-    color: #d3d3d3;
-    
+    color: #d3d3d3;  
 }
+
 .full {
     color: #f01a52;
 }
@@ -107,6 +112,7 @@ span{
     margin-left: 3em;
     margin-right:5px;
 }
+
 .suma{
     margin-left:5px;
 }

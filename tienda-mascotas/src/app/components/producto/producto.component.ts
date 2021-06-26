@@ -29,28 +29,21 @@ export class ProductoComponent implements OnInit {
     this.formComment=this.fb.group({
       Comentario:['',[Validators.required,Validators.maxLength(150),Validators.minLength(2)]],
       Rating:['',[Validators.required]],
-  })
-
+    })
   }
 
   ngOnInit(): void {
-    console.log("holi",this.rutaActiva.snapshot.params.id);
       this.servicioProducto.getProducto(this.rutaActiva.snapshot.params.id).subscribe((prod) => {
         for (let i = 0; i < prod.length; i++) {
           this.producto.push(prod[i]);
-          console.log(prod[i]);
         }
       });
       this.servicioProducto.getComentarios(this.rutaActiva.snapshot.params.id).subscribe((comentario) => {
         for (let i = 0; i < comentario.length; i++) {
           this.comentarios.push(comentario[i]);
-          console.log(comentario[i]);
         }
       });
-
-
       this.servicioUsuario.getUsuarioActivo().subscribe((usuario) => {
-        console.log("cargando usuario activo");
         if(usuario!= null){
           this.show=true;
           this.user.push(usuario[0]);
@@ -63,8 +56,7 @@ export class ProductoComponent implements OnInit {
   aumentar(){
     if(this.cantidad<this.producto[0].stock){
       this.cantidad+=1;
-    }
-    
+    } 
   }
 
   disminuir(){
@@ -72,23 +64,22 @@ export class ProductoComponent implements OnInit {
       this.cantidad-=1;
     }
   }
+
   aniadirCarrito(){
     let noexiste:boolean=true;
     let acarrito:CarroCompra={producto:this.producto[0],
       cantidadProducto:this.cantidad};
     
     for(let i=0;i<this.carrito.length;i++){
-      if(this.carrito[i].producto==this.producto[0]){
+      if(this.carrito[i].producto.id==this.producto[0].id){
         this.carrito[i].cantidadProducto+=this.cantidad;
         if(this.carrito[i].cantidadProducto>this.producto[0].stock){
           this.carrito[i].cantidadProducto=this.producto[0].stock;
         }
-        console.log("ya existe");
         noexiste=false;
       }
     }
     if(noexiste){   
-      console.log("añadido");
       this.carrito.push(acarrito);
     }
   }
@@ -111,7 +102,6 @@ export class ProductoComponent implements OnInit {
       console.log(respuesta);
     });
     location.reload();
-
   }
 
 }

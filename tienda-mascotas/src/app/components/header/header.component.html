@@ -4,14 +4,16 @@
             <a [routerLink]="['/']" routerLinkActive="router-link-active"><li><img src="./../../../assets/icon_tienda/logo_nombre.png" alt="a"></li></a>
             <li>          
                 <ul id="sesion">
-                    <ng-container *ngIf="show1">
+                    <ng-container *ngIf="show1" >      
                     <mat-icon id="logo_cuenta">account_circle</mat-icon>
-                    <li>
-                        <a [routerLink]="['/iniciar-sesion']" routerLinkActive="router-link-active" >Iniciar sesion</a>
-                    </li>
-                    <li class="sesion">
-                        <a [routerLink]="['/formulario-registro']" routerLinkActive="router-link-active" >Crear Cuenta</a>
-                    </li>
+                    <div id="iniciar">
+                        <li>
+                            <a [routerLink]="['/iniciar-sesion']" routerLinkActive="router-link-active" >Iniciar sesion</a>
+                        </li>
+                        <li class="sesion">
+                            <a [routerLink]="['/formulario-registro']" routerLinkActive="router-link-active" >Crear Cuenta</a>
+                        </li>
+                    </div>
                     </ng-container>
                     <ng-container *ngIf="show2">
                         <mat-icon id="logo_cuenta">account_circle</mat-icon>
