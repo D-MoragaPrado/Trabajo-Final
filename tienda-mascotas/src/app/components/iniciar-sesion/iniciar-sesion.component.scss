@@ -7,20 +7,11 @@ li{
 
 }
 
-.checkbox-section {
-  margin: 12px 0;
-}
-
-.checkbox-margin {
-  margin: 0 12px;
-}
-checkbox{
-  background-color: blueviolet;
-}
 .si{
   text-align: center;
   margin-left:15px;
 }
+
 div#sesion-i{
     width: 250px;
     height: 250px;
@@ -30,6 +21,11 @@ div#sesion-i{
     border-radius: 50px;
     margin-bottom: 2em;
     margin-left: 40%;
-    padding-top:8%;
+    padding-top:3%;
+}
 
+.button{
+  text-align: center;
+  border-radius: 10px;
+  font: oblique 17px serif;
 }

@@ -21,16 +21,14 @@
      
            
         </li>
-
         <li>
             <a [routerLink]="['/recuperar-clave']" routerLinkActive="router-link-active" >
-                ¿olvidaste tu contraseña?
+                <h3>¿olvidaste tu contraseña?</h3>
             </a>
         </li>
         <li>
             <button class="button" type="submit" [disabled]="formularioI.invalid">Ingresar</button>
-        </li>
-        
+        </li>      
     </ul>   
 </form>
 </ng-container>
@@ -39,6 +37,8 @@
         <ul class="si">
             <mat-icon>pets</mat-icon>
             <li><h2> Sesión Iniciada</h2></li>
+            <li><h2> Bienvenido </h2></li>
+            <li><h2> {{user[0].nombres}}</h2></li>
         </ul>
     </div>
 </ng-container>

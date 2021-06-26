@@ -24,7 +24,6 @@ export class IniciarSesionComponent implements OnInit {
       checkbox:false,
   });}
 
-
   ngOnInit(): void {
     this.servicioUsuario.getUsuarioActivo().subscribe((usuario) => {
       console.log("cargando usuario activo");
@@ -53,20 +52,16 @@ export class IniciarSesionComponent implements OnInit {
         respuesta:''
       };
       this.servicioUsuario.iniciarSesion(usuario).subscribe(respuesta=>{
-        console.log("holi  ",respuesta);
         if(respuesta){
           location.reload();   
         }else{
           alert("Correo y/o contraseña incorrectos");
         }
-
-      });
-      
+      });    
     }
     else{
       alert("FILL ALL FIELDS")
     }
   }
 
-  
 }
