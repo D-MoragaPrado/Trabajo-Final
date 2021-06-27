@@ -3,6 +3,16 @@
 
     li{
         vertical-align: middle;
+        padding-bottom: 5px;
+    }
+    ul{
+        list-style-type: none;
+    }
+    ul.agencias{
+        list-style-type:circle;
+    }
+    .icon{
+        width: 100px;
     }
 
 }
@@ -10,4 +20,22 @@
     margin-left: 47%;
     width: 10em;
     height: 4em;
+}
+.logo_tienda{
+    float: right;
+    width: 250px;
+    margin:5em;
+    border-radius: 20px;
+    box-shadow: 2px 2px 2px 1px #d82e5b57;    
+}
+h3{
+    font-weight: bold;
+    font-family: cursive;
+    font-size: 18px;
+}
+h2{
+    padding-top: 15px;
+    margin-left:40%;
+    font-size: 28px;;
+    color:#d82e5bee;
 }

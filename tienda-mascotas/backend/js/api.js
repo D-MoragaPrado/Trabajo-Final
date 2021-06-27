@@ -36,7 +36,6 @@ connection.connect(function (err) {
 app.get('/producto/:id', function (req, res) {
     var idProducto = req.params.id;
     connection.query('SELECT * FROM `producto` WHERE id=?', idProducto, function (reqSQL, resSQL) {
-        //res.status(200).send(reqSQL); 
         if (resSQL == '') {
             console.log('Producto no existente'); //???
             res.status(404);
@@ -60,7 +59,14 @@ app.get('/categorias/gatos', function (req, res) {
 app.get('/subcategorias/:id', function (req, res) {
     var id_categoria = req.params.id;
     connection.query('SELECT * From `categorias` WHERE `categoria_id` IN (SELECT DISTINCT `subcategoria_id` FROM `producto` WHERE `categoria_principal_id`=?)', id_categoria, function (reqSQL, resSQL) {
-        res.status(200).send(resSQL);
+        if (resSQL == '') {
+            console.log('Sin subcategorias');
+            res.status(404);
+        }
+        else {
+            console.log(resSQL);
+            res.status(200).send(resSQL);
+        }
     });
 });
 app.get('/subcategorias/:cat/:subcat', function (req, res) {
@@ -69,7 +75,7 @@ app.get('/subcategorias/:cat/:subcat', function (req, res) {
     console.log(categoria, subCategoria, "1");
     connection.query('SELECT * FROM producto WHERE (categoria_principal_id=(SELECT categoria_id FROM categorias WHERE nombre_categoria=?) AND subcategoria_id=(SELECT categoria_id FROM categorias WHERE nombre_categoria=?))', [categoria, subCategoria], function (reqSQL, resSQL) {
         if (resSQL == '') {
-            console.log('Product0 no existente');
+            console.log('Sin productos');
             res.status(404);
         }
         else {
@@ -106,12 +112,7 @@ app.put('/cambiar-valoracion', function (req, res) {
     var newValoracion = req.body.calificacion;
     console.log("la nueva valoracion es ", newValoracion);
     connection.query('UPDATE `producto` SET calificacion=? WHERE id=?', [newValoracion, id_producto], function (reqSQL, resSQL) {
-        /*if(resSQL == ''){
-            res.send(false);
-        }
-        else{*/
         res.status(200).send(resSQL);
-        //}
     });
 });
 app.post('/realizar-compra', function (req, res) {
@@ -304,36 +305,26 @@ app.post('/iniciar-sesion', function (req, res) {
     connection.query('SELECT * FROM `usuario` WHERE correo=? AND password=?', [correo, password], function (reqSQL, resSQL) {
         if (resSQL == '') {
             console.log("no existe");
-            res.send(false);
+            res.send(false).status(200);
         }
         else {
             usuarioSesion = resSQL;
             console.log("Existee", usuarioSesion);
-            res.send(true);
+            res.send(true).status(200);
         }
     });
 });
 app.get('/obtener-pregunta/:correo', function (req, res) {
     var correo = req.params.correo;
     connection.query('SELECT pregunta_secreta FROM `usuario` WHERE correo=?', correo, function (reqSQL, resSQL) {
-        /*if(resSQL == ''){
-            res.send(false);
-        }
-        else{*/
         res.status(200).send(resSQL);
-        //}
     });
 });
 app.get('/obtener-usuario/:correo/:respuesta', function (req, res) {
     var correo = req.params.correo;
     var respuesta = md5_typescript_1.Md5.init(req.params.respuesta);
     connection.query('SELECT * FROM `usuario` WHERE correo=? AND respuesta_secreta=?', [correo, respuesta], function (reqSQL, resSQL) {
-        /*if(resSQL == ''){
-            res.send(false);
-        }
-        else{*/
         res.status(200).send(resSQL);
-        //}
     });
 });
 app.get('/obtener-usuarios', function (req, res) {
@@ -353,12 +344,7 @@ app.put('/cambiar-clave', function (req, res) {
     var correo = req.body.correo;
     var password = md5_typescript_1.Md5.init(req.body.password);
     connection.query('UPDATE `usuario` SET password=? WHERE correo=?', [password, correo], function (reqSQL, resSQL) {
-        /*if(resSQL == ''){
-            res.send(false);
-        }
-        else{*/
         res.status(200).send(resSQL);
-        //}
     });
 });
 // Checkeo de correo existente en bd
@@ -366,10 +352,10 @@ app.get('/formulario-registro/:correo', function (req, res) {
     var correo = req.params.correo;
     connection.query('SELECT * FROM `usuario` WHERE correo=?', correo, function (reqSQL, resSQL) {
         if (resSQL == '') {
-            res.send(false);
+            res.send(false).status(200);
         }
         else {
-            res.send(true);
+            res.send(true).status(200);
         }
     });
 });

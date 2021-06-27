@@ -17,6 +17,8 @@ export class CarritoComponent implements OnInit {
   total:number;
   user:Array<Usuario>=[];
   show:boolean = false;
+  compraNR:boolean=true;
+  compraR:boolean=false;
 
   constructor(private servicioProducto : ManejoProductosService,private servicioUsuario: ManejoUsuariosService) { 
     this.cantidad = 0;
@@ -71,7 +73,9 @@ export class CarritoComponent implements OnInit {
 
   comprar(){
     this.servicioProducto.RealizarCompra().subscribe((prod) => {
-      console.log(prod);
+      console.log(prod);    
     });
+      this.compraNR=false;
+      this.compraR=true;
   }
 }

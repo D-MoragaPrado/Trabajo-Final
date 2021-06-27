@@ -113,6 +113,7 @@ export class IniciarSesionComponent implements OnInit {
       $("#imagen").attr('src',imagen);
       texto=response.text;
     });
+    console.log(Textoclave);
   }
 
 }
