@@ -65,9 +65,10 @@
             </span>
         </mat-menu>
         
-    
-        
-        <button mat-button>Contacto</button>
+        <a [routerLink]="['/contacto']" routerLinkActive="router-link-active" >
+            <button mat-button>Contacto</button>
+        </a>
+
         <a [routerLink]="['/carrito']" routerLinkActive="router-link-active" >
             <div id="carrito">
                 <button mat-button>
