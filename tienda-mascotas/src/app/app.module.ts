@@ -27,6 +27,7 @@ import { IngresoAdminComponent } from './components/ingreso-admin/ingreso-admin.
 import { AdminComponent } from './components/admin/admin.component';
 import { RecuperarClaveComponent } from './components/recuperar-clave/recuperar-clave.component';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     NgbModule,
     MatCardModule,
     NgbRatingModule,
-    MatGridListModule
+    MatGridListModule,
+    NgxCaptchaModule,
 
   ],
   providers: [],

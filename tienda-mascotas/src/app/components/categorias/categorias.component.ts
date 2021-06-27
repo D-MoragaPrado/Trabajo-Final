@@ -34,7 +34,6 @@ export class CategoriasComponent implements OnInit {
         for (let i = 0; i < producto.length; i++) {
           this.productos.push(producto[i]);
           this.productosfiltro.push(producto[i])
-          console.log(producto[i]);
         }
         this.categoria="Perro";
       });
@@ -43,7 +42,6 @@ export class CategoriasComponent implements OnInit {
         for (let i = 0; i < producto.length; i++) {
           this.productos.push(producto[i]);
           this.productosfiltro.push(producto[i])
-          console.log(producto[i]);
         }
         this.categoria="Gato";
       });
@@ -78,7 +76,6 @@ export class CategoriasComponent implements OnInit {
       this.servicioProducto.filtroTotal(this.categoria,this.subcategoria,pmin,pmax,rmin,rmax).subscribe((producto) => {
         for (let i = 0; i < producto.length; i++) {
           this.productos.push(producto[i]);
-          console.log(producto[i]);
         }
       });
 
@@ -88,7 +85,6 @@ export class CategoriasComponent implements OnInit {
       this.servicioProducto.filtroDisponibilidad(this.categoria,this.subcategoria).subscribe((producto) => {
         for (let i = 0; i < producto.length; i++) {
           this.productos.push(producto[i]);
-          console.log(producto[i]);
         }
       });
 
@@ -98,7 +94,6 @@ export class CategoriasComponent implements OnInit {
       this.servicioProducto.filtroPrecio(this.categoria,this.subcategoria,pmin,pmax).subscribe((producto) => {
         for (let i = 0; i < producto.length; i++) {
           this.productos.push(producto[i]);
-          console.log(producto[i]);
         }
       });
 
@@ -108,7 +103,6 @@ export class CategoriasComponent implements OnInit {
       this.servicioProducto.filtroRating(this.categoria,this.subcategoria,rmin,rmax).subscribe((producto) => {
         for (let i = 0; i < producto.length; i++) {
           this.productos.push(producto[i]);
-          console.log(producto[i]);
         }
       });
 
@@ -118,7 +112,6 @@ export class CategoriasComponent implements OnInit {
       this.servicioProducto.filtroDyP(this.categoria,this.subcategoria,pmin,pmax).subscribe((producto) => {
         for (let i = 0; i < producto.length; i++) {
           this.productos.push(producto[i]);
-          console.log(producto[i]);
         }
       });
 
@@ -128,7 +121,6 @@ export class CategoriasComponent implements OnInit {
       this.servicioProducto.filtroDyR(this.categoria,this.subcategoria,rmin,rmax).subscribe((producto) => {
         for (let i = 0; i < producto.length; i++) {
           this.productos.push(producto[i]);
-          console.log(producto[i]);
         }
       });
 
@@ -138,7 +130,6 @@ export class CategoriasComponent implements OnInit {
       this.servicioProducto.filtroPyR(this.categoria,this.subcategoria,pmin,pmax,rmin,rmax).subscribe((producto) => {
         for (let i = 0; i < producto.length; i++) {
           this.productos.push(producto[i]);
-          console.log(producto[i]);
         }
       });
     }

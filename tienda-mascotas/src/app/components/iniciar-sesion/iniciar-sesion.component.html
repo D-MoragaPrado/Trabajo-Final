@@ -1,11 +1,11 @@
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <ng-container *ngIf="show1">
 <form [formGroup]="formularioI" (ngSubmit)="EnviarDatos()" novalidate class="clase-form">
     <ul>
         <li>
             <mat-form-field class="caja-input">
                 <mat-label>Correo Electrónico</mat-label>
-                <input matInput  type="email" placeholder="example@correo.com" formControlName="Correo" >
+                <input matInput  type="email" placeholder="example@correo.com" formControlName="Correo">
                 <mat-icon matSuffix>alternate_email</mat-icon>
             </mat-form-field>
         </li>
@@ -17,9 +17,8 @@
             </mat-form-field>
         </li>
         <li>
-           <h3> Aqui debe ir un captcha :D</h3>
-     
-           
+            <img src='' id='imagen'>{{imagen}}<br>
+            <input type='text' formControlName='codigo'>
         </li>
         <li>
             <a [routerLink]="['/recuperar-clave']" routerLinkActive="router-link-active" >

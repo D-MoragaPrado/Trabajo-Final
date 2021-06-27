@@ -42,11 +42,9 @@ connection.connect( function(err : any){
 app.get('/producto/:id', (req : any, res : any) => {
     let idProducto = req.params.id;
     connection.query('SELECT * FROM `producto` WHERE id=?', idProducto, (reqSQL : any, resSQL : any) =>{
-        //res.status(200).send(reqSQL); 
         if(resSQL == ''){
             console.log('Producto no existente');        //???
-            res.status(404);
-            
+            res.status(404);      
         }
         else{
             console.log(resSQL);
@@ -70,7 +68,14 @@ app.get('/categorias/gatos', (req : any, res : any) => {
 app.get('/subcategorias/:id', (req : any, res : any) => {
     let id_categoria = req.params.id;
 	connection.query('SELECT * From `categorias` WHERE `categoria_id` IN (SELECT DISTINCT `subcategoria_id` FROM `producto` WHERE `categoria_principal_id`=?)',id_categoria, (reqSQL : any, resSQL : any) => {
-		res.status(200).send(resSQL);    
+		if(resSQL == ''){
+            console.log('Sin subcategorias'); 
+            res.status(404);      
+        }
+        else{
+            console.log(resSQL);
+            res.status(200).send(resSQL);    
+        }  
 	})
 })
 
@@ -80,24 +85,22 @@ app.get('/subcategorias/:cat/:subcat', (req : any, res : any) => {
     console.log(categoria,subCategoria,"1");
     connection.query('SELECT * FROM producto WHERE (categoria_principal_id=(SELECT categoria_id FROM categorias WHERE nombre_categoria=?) AND subcategoria_id=(SELECT categoria_id FROM categorias WHERE nombre_categoria=?))',[categoria,subCategoria], (reqSQL : any, resSQL : any) => {
 		if(resSQL == ''){
-            console.log('Product0 no existente');
-            res.status(404);
-            
+            console.log('Sin productos');
+            res.status(404);      
         }
         else{
             console.log(resSQL);
             res.status(200).send(resSQL);    
         } 
 	})
-
 })
+
 app.get('/comentarios/:idproducto', (req : any, res : any) => {
     let id_producto= req.params.idproducto;
     connection.query('SELECT * FROM comentarios WHERE id_producto=?',id_producto, (reqSQL : any, resSQL : any) => {
 		if(resSQL == ''){
             console.log('Sin comentarios');
             res.status(404);
-            
         }
         else{
             console.log(resSQL);
@@ -122,14 +125,8 @@ app.put('/cambiar-valoracion', (req : any, res : any) => {
     let newValoracion=req.body.calificacion;
     console.log("la nueva valoracion es ",newValoracion);
     connection.query('UPDATE `producto` SET calificacion=? WHERE id=?', [newValoracion,id_producto], (reqSQL : any, resSQL : any) => {
-        /*if(resSQL == ''){
-            res.send(false);
-        }
-        else{*/
-            res.status(200).send(resSQL);
-        //}
+        res.status(200).send(resSQL);
     })
-
 })
 
 app.post('/realizar-compra', (req : any, res : any) => {
@@ -154,8 +151,6 @@ app.post('/realizar-compra', (req : any, res : any) => {
             })
         }
     });
-    
-
 })  
 
 app.get('/obtener-productos', (req : any, res : any) => {
@@ -330,36 +325,26 @@ app.post('/iniciar-sesion', (req : any, res : any) => {
     connection.query('SELECT * FROM `usuario` WHERE correo=? AND password=?',[correo,password], (reqSQL : any, resSQL : any) => {
         if(resSQL == ''){
             console.log("no existe");
-            res.send(false);
+            res.send(false).status(200);
         }
         else{
             usuarioSesion=resSQL;
             console.log("Existee",usuarioSesion);
-            res.send(true);
+            res.send(true).status(200);
         }
     })
 }) 
 app.get('/obtener-pregunta/:correo', (req : any , res : any) => {
     let correo = req.params.correo
     connection.query('SELECT pregunta_secreta FROM `usuario` WHERE correo=?', correo, (reqSQL : any, resSQL : any) => {
-        /*if(resSQL == ''){
-            res.send(false);
-        }
-        else{*/
-            res.status(200).send(resSQL);
-        //}
+        res.status(200).send(resSQL);
     })
 })
 app.get('/obtener-usuario/:correo/:respuesta', (req : any , res : any) => {
     let correo = req.params.correo;
     let respuesta = Md5.init(req.params.respuesta);
     connection.query('SELECT * FROM `usuario` WHERE correo=? AND respuesta_secreta=?', [correo,respuesta], (reqSQL : any, resSQL : any) => {
-        /*if(resSQL == ''){
-            res.send(false);
-        }
-        else{*/
             res.status(200).send(resSQL);
-        //}
     })
 })
 
@@ -383,12 +368,7 @@ app.put('/cambiar-clave', (req : any, res : any) => {
     let correo = req.body.correo;
     let password = Md5.init(req.body.password);
     connection.query('UPDATE `usuario` SET password=? WHERE correo=?', [password,correo], (reqSQL : any, resSQL : any) => {
-        /*if(resSQL == ''){
-            res.send(false);
-        }
-        else{*/
-            res.status(200).send(resSQL);
-        //}
+        res.status(200).send(resSQL);
     })
 
 })
@@ -398,10 +378,10 @@ app.get('/formulario-registro/:correo', (req : any , res : any) => {
     let correo = req.params.correo
     connection.query('SELECT * FROM `usuario` WHERE correo=?', correo, (reqSQL : any, resSQL : any) => {
         if(resSQL == ''){
-            res.send(false);
+            res.send(false).status(200);
         }
         else{
-            res.send(true);
+            res.send(true).status(200);
         }
     })
 })
