@@ -10,6 +10,7 @@ import {SubcategoriaComponent} from '../app/components/subcategoria/subcategoria
 import { IngresoAdminComponent } from '../app/components/ingreso-admin/ingreso-admin.component';
 import { AdminComponent } from '../app/components/admin/admin.component';
 import {RecuperarClaveComponent} from '../app/components/recuperar-clave/recuperar-clave.component'
+import { ContactoComponent } from './components/contacto/contacto.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path:'login/admin', component:IngresoAdminComponent, data:{header:false}},
   {path:'admin', component:AdminComponent, data:{header:false}},
   {path:'recuperar-clave',component:RecuperarClaveComponent},
+  {path:'contacto',component:ContactoComponent},
 ];
 
 @NgModule({

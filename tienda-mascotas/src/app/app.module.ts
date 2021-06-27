@@ -27,7 +27,7 @@ import { IngresoAdminComponent } from './components/ingreso-admin/ingreso-admin.
 import { AdminComponent } from './components/admin/admin.component';
 import { RecuperarClaveComponent } from './components/recuperar-clave/recuperar-clave.component';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { NgxCaptchaModule } from 'ngx-captcha';
+import { ContactoComponent } from './components/contacto/contacto.component'
 
 @NgModule({
   declarations: [
@@ -43,7 +43,8 @@ import { NgxCaptchaModule } from 'ngx-captcha';
     SubcategoriaComponent,
     IngresoAdminComponent,
     AdminComponent,
-    RecuperarClaveComponent
+    RecuperarClaveComponent,
+    ContactoComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +62,6 @@ import { NgxCaptchaModule } from 'ngx-captcha';
     MatCardModule,
     NgbRatingModule,
     MatGridListModule,
-    NgxCaptchaModule,
 
   ],
   providers: [],
