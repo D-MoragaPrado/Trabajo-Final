@@ -13,7 +13,9 @@ Project by: ROBERTO CRISTOBAL ISLA HENRIQUEZ & DIANA PAOLA MORAGA PRADO & RAFAEL
 
 ## accesorios_mascotas.sql
   Es el archivo de la base de datos, donde se encuentran las tablas con sus respectivos atributos. 
-  Se estima conveniente la implementación de una base de dato Relacional para poder manejar de manera óptima los requerimientos que se piden, demostrando la implementación con el siguiente diseño físico: ![](https://i.imgur.com/8m9VtwL.png)
+  Se estima conveniente la implementación de una base de dato Relacional para poder manejar de manera óptima los requerimientos que se piden, demostrando la implementación con el siguiente diseño físico: 
+  
+  ![](https://i.imgur.com/8m9VtwL.png)
 
 ## Build backend & front-end
 
