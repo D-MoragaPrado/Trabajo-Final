@@ -101,10 +101,10 @@ export class IniciarSesionComponent implements OnInit {
     const settings = {
       "async": true,
       "crossDomain": true,
-      "url": "https://password-and-captcha-generator.p.rapidapi.com/generateCaptcha?text="+Textoclave+"&width=160&height=60",
+      "url": "https://password-and-captcha-generator.p.rapidapi.com/generateCaptcha?text="+Textoclave+"&width=160&height=62",
       "method": "GET",
       "headers": {
-      "x-rapidapi-key": "5794f1a6fcmshcced48b6e9cb43ap18fadbjsnf7e959d5bee8",
+      "x-rapidapi-key": "4462a30b42mshb25346b7a93e401p1fd1b6jsn216ad7c81506",
       "x-rapidapi-host": "password-and-captcha-generator.p.rapidapi.com"
       }
     };
